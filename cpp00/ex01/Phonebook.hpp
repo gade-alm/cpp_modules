@@ -1,6 +1,22 @@
-#include "Phonebook.hpp"
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
-int main()
+#include "Contact.hpp"
+#include <iostream>
+
+class	Phonebook{
+	private:
+		Contact contact[8];
+	public:
+
+} phonebook;
+
+void	search(void)
 {
-	contact.set_first
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	set_first("teste");
 }
+
+#endif

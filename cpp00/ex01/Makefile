@@ -1,4 +1,5 @@
-SRCS		= phonebook.cpp
+SRCS		= Phonebook.cpp \
+				Contact.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -20,3 +21,5 @@ clean:
 
 fclean:
 	$(RM) $(OBJS) $(NAME)
+
+re:fclean all
