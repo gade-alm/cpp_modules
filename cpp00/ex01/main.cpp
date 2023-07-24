@@ -7,8 +7,8 @@ int main(void)
 
 	while (!(std::cin.eof()))
 	{
-		system("clear");
-		std::cout << "Write a  valid command(ADD, SEARCH or EXIT)" << std::endl;
+		// system("clear");
+		std::cout << "Write a valid command(ADD, SEARCH or EXIT)" << std::endl;
 		getline(std::cin, input);
 		if (input == "search")
 			phonebook.search();

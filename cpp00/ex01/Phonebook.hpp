@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
+#include <iomanip>
 
 class	Phonebook{
 	private:
@@ -14,6 +15,8 @@ class	Phonebook{
 		Phonebook();
 		void	search(void);
 		void	add(void);
+		bool	check_contact(int index);
+		void	get_info(int index);
 };
 
 #endif
