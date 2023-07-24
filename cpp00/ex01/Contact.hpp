@@ -3,11 +3,6 @@
 
 # include <iostream>
 
-void	set_first(std::string	first)
-{
-	std::cout << first << std::endl;
-}
-
 class Contact{
 	private:
 		std::string	first_name;

@@ -3,20 +3,17 @@
 
 #include "Contact.hpp"
 #include <iostream>
+#include <string.h>
+#include <cstdlib>
 
 class	Phonebook{
 	private:
-		Contact contact[8];
+		int		index;
+		Contact contacts[8];
 	public:
-
-} phonebook;
-
-void	search(void)
-{
-	std::cout << "|-------------------------------------------|" << std::endl;
-	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	std::cout << "|-------------------------------------------|" << std::endl;
-	set_first("teste");
-}
+		Phonebook();
+		void	search(void);
+		void	add(void);
+};
 
 #endif
