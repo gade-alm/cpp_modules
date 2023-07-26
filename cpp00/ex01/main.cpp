@@ -10,11 +10,11 @@ int main(void)
 		system("clear");
 		std::cout << "Write a valid command(ADD, SEARCH or EXIT)" << std::endl;
 		getline(std::cin, input);
-		if (input == "search")
-			phonebook.search();
-		if (input == "add")
+		if (input == "ADD")
 			phonebook.add();
-		if (input == "exit")
+		if (input == "SEARCH")
+			phonebook.search();
+		if (input == "EXIT")
 		{
 			std::cout << "You exited the phonebook" << std::endl;
 			break ;

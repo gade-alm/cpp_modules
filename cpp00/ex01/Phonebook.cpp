@@ -14,7 +14,7 @@ void	Phonebook::search(void)
 	std::cout << "|===========================================|" << std::endl;
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	std::cout << "|===========================================|" << std::endl;
-	while (i < this->index)
+	while (i < 8 && (check_contact(i) == true))
 	{
 		std::cout << '|' << std::setw(10) << i << '|';
 		std::cout << std::setw(10) << contacts[i].print_name().substr(0, 9) << '|';
@@ -26,9 +26,8 @@ void	Phonebook::search(void)
 	std::cout << "Write the index of the contact you want to see:" << std::endl;
 	std::cin >> num;
 	if (num >= 0 && num < i && check_contact(num) == 1)
-	{
 		get_info(num);
-	}
+	std::cin.clear();
 }
 
 void	Phonebook::add(void)
@@ -59,9 +58,11 @@ void	Phonebook::add(void)
 	contacts[index].set_secret(input);
 
 	if (check_contact(index) == 0)
+	{
+		std::cout << "Missing contact information, try again." << std::endl;
 		return ;
-	else
-		index++;
+	}
+	index++;
 }
 
 bool	Phonebook::check_contact(int number)
@@ -69,10 +70,7 @@ bool	Phonebook::check_contact(int number)
 	if (contacts[number].print_name() == "" || contacts[number].print_last() == "" || \
 	contacts[number].print_nick() == "" || contacts[number].print_number() == "" || \
 	contacts[number].print_secret() == "")
-	{
-		std::cout << "Missing contact information, try again." << std::endl;
 		return (false);
-	}
 	return (true);
 }
 
@@ -83,6 +81,7 @@ void	Phonebook::get_info(int num)
 	std::cout << "Nickname:" << contacts[num].print_nick() << std::endl;
 	std::cout << "Number:" << contacts[num].print_number() << std::endl;
 	std::cout << "Darkest Secret:" << contacts[num].print_secret() << std::endl;
+	std::cout << "Press enter to continue..." << std::endl;
+	std::cin.ignore();
 	std::cin.get();
-	std::cout << "Press enter to return" << std::endl;
 }
