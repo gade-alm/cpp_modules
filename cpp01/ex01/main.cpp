@@ -2,8 +2,7 @@
 
 int main(void)
 {
-	Zombie zombies;
-	zombieHorde(5, "Gabriel");
-	for (int i = 0; i < 5; i++)
-		zombies.~Zombie();
+	Zombie *zombies = zombieHorde(10, "Gabriel");
+
+	delete[] zombies;
 }
