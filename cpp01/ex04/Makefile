@@ -1,7 +1,4 @@
 SRCS		= main.cpp \
-				Weapon.cpp \
-				HumanA.cpp \
-				HumanB.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -9,7 +6,7 @@ CC			= c++
 
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 
 
-NAME		= violence
+NAME		= sed
 
 all: $(NAME)
 
@@ -19,7 +16,7 @@ $(NAME): $(OBJS)
 RM		= rm -rf
 
 t: re 
-	./violence
+	./sed
 
 clean: 
 	$(RM) $(OBJS)
