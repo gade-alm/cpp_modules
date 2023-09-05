@@ -1,0 +1,28 @@
+SRCS		= main.cpp \
+				Harl.cpp \
+
+OBJS		= $(SRCS:.cpp=.o)
+
+CC			= c++
+
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 
+
+NAME		= harl
+
+all: $(NAME)
+
+$(NAME): $(OBJS) 
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -fsanitize=address -g
+
+RM		= rm -rf
+
+t: re 
+	./harl
+
+clean: 
+	$(RM) $(OBJS)
+
+fclean:
+	$(RM) $(OBJS) $(NAME)
+
+re:fclean all
