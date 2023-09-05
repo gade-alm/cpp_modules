@@ -11,7 +11,7 @@ class Harl{
 		void	info( void );
 		void	warning( void );
 		void	error( void );
-		void	(Harl::*pointer[3])( void );
+		void	(Harl::*pointer[4])( void );
 	public:
 		Harl();
 		~Harl();
