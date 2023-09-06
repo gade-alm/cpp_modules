@@ -32,26 +32,26 @@ void	Harl::error( void ) {
 }
 
 void	Harl::complain( std::string level ) {
-	
-	enum messages{
-		DEBUG = 0,
-		INFO = 1,
-		WARNING = 2,
-		ERROR = 3,
-	}messages;
 
-	switch (messages){
+	int i = -1;
+	std::string	values[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	while (++i < 4)
+		if (!values[i].compare(level))
+			break ;
+	switch (i){
 		case 0:
-			std::cout << "teste" << std::endl;
-			break ;
+			std::cout << "ERROR MESSAGE:" << std::endl;
+			(this->*pointer[i])();
 		case 1:
-			std::cout << "teste" << std::endl;
-			break ;
+			std::cout << "WARNING MESSAGE:" << std::endl;
+			(this->*pointer[i])();
 		case 2:
-			std::cout << "teste" << std::endl;
-			break ;
+			std::cout << "INFO MESSAGE:" << std::endl;
+			(this->*pointer[i])();
 		case 3:
-			std::cout << "teste" << std::endl;
+			std::cout << "DEBUG MESSAGE:" << std::endl;
+			(this->*pointer[i])();
 			break ;
 	}
 }
