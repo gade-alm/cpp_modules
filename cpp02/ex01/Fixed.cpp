@@ -21,6 +21,25 @@ Fixed& Fixed::operator=( const Fixed& obj){
 	return (*this);
 }
 
+//converts integer to the corresponding fixed point value
+Fixed::Fixed( const int integer) {
+	
+}
+
+//converts float to the corresponding fixed point value
+Fixed::Fixed( const float floating_value ) {
+	this->_fixedPoint = roundf(floating_value * (1 / _fractBits));
+}
+
+//that converts the fixed-point value to a floating-point value
+float	Fixed::toFloat( void ) const {
+	return (this->_fixedPoint / 1 << this->_fractBits);
+}
+
+//that converts the fixed-point value to an integer value.
+int		Fixed::toInt( void ) const {
+}
+
 int		Fixed::getRawBits( void ) const {
 	std::cout << "getRawBits function called" << std::endl;
 	return (_fixedPoint);
