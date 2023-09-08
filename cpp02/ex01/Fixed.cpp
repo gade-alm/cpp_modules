@@ -23,12 +23,14 @@ Fixed& Fixed::operator=( const Fixed& obj){
 
 //converts integer to the corresponding fixed point value
 Fixed::Fixed( const int integer) {
-	
+	std::cout << "Int constructor called" << std::endl;
+	this->_fixedPoint = (integer * (1 >> _fractBits));
 }
 
 //converts float to the corresponding fixed point value
 Fixed::Fixed( const float floating_value ) {
-	this->_fixedPoint = roundf(floating_value * (1 / _fractBits));
+	std::cout << "Float constructor called" << std::endl;
+	this->_fixedPoint = roundf(floating_value * (1 << _fractBits));
 }
 
 //that converts the fixed-point value to a floating-point value
@@ -38,6 +40,7 @@ float	Fixed::toFloat( void ) const {
 
 //that converts the fixed-point value to an integer value.
 int		Fixed::toInt( void ) const {
+	return (this->_fixedPoint / 1 << this->_fractBits);
 }
 
 int		Fixed::getRawBits( void ) const {
@@ -47,4 +50,10 @@ int		Fixed::getRawBits( void ) const {
 
 void	Fixed::setRawBits( int const raw ) {
 	this->_fixedPoint = raw;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
+	os << obj.toFloat();
+	std::cout << obj.getRawBits() << std::endl;
+	return (os);
 }

@@ -21,6 +21,6 @@ class Fixed{
 		int		toInt ( void ) const; //that converts the fixed-point value to an integer value.
 };
 
-std::ostream& operator<<(std::ostream& os, Fixed& fix);
+std::ostream& operator<<(std::ostream& os, const Fixed& obj);
 
 #endif
