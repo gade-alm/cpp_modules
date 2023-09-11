@@ -24,7 +24,7 @@ Fixed& Fixed::operator=( const Fixed& obj){
 //converts integer to the corresponding fixed point value
 Fixed::Fixed( const int integer) {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixedPoint = integer * (1 >> _fractBits);
+	this->_fixedPoint = integer * (1 << _fractBits);
 }
 
 //converts float to the corresponding fixed point value
