@@ -17,6 +17,7 @@ $(NAME): $(OBJS)
 RM		= rm -rf
 
 t: re
+	clear
 	./fixed
 
 clean: 
