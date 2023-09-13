@@ -132,18 +132,26 @@ std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
 
 //compare functions
 
-static Fixed& min( Fixed& lhs, Fixed& rhs ) { 
-	
+Fixed& Fixed::min( Fixed& lhs, Fixed& rhs ) { 
+	if (lhs.getRawBits() < rhs.getRawBits())
+		return (lhs);
+	return (rhs);
 }
 
-static Fixed& max ( Fixed& lhs, Fixed& rhs ) {
-
+Fixed& Fixed::max( Fixed& lhs, Fixed& rhs ) {
+	if (lhs.getRawBits() > rhs.getRawBits())
+		return (lhs);
+	return (rhs);
 }
 
-static const Fixed& min ( const Fixed &lhs, const Fixed &rhs ) {
-
+const Fixed& Fixed::min( const Fixed &lhs, const Fixed &rhs ) {
+	if (lhs.getRawBits() < rhs.getRawBits())
+		return (lhs);
+	return (rhs);
 }
 
-static const Fixed& max (const Fixed &lhs, const Fixed &rhs) {
-
+const Fixed& Fixed::max(const Fixed &lhs, const Fixed &rhs) {
+	if (lhs.getRawBits() > rhs.getRawBits())
+		return (lhs);
+	return (rhs);	
 }
