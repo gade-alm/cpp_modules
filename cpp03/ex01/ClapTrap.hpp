@@ -11,7 +11,7 @@
 # define BLUE    "\033[34m"      /* Blue */
 
 class ClapTrap { 
-	private:
+	protected:
 		const std::string		_name;
 		int						_hitPoints;
 		int				_energyPoints;
