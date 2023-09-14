@@ -15,12 +15,6 @@ Fixed::Fixed (const Fixed& obj) {
 	*this = obj;
 }
 
-Fixed& Fixed::operator=( const Fixed& obj){
-	std::cout << "Copy assignment operator called" << std::endl;
-	_fixedPoint = obj._fixedPoint;
-	return (*this);
-}
-
 //converts integer to the corresponding fixed point value
 Fixed::Fixed( const int integer) {
 	std::cout << "Int constructor called" << std::endl;
@@ -31,6 +25,12 @@ Fixed::Fixed( const int integer) {
 Fixed::Fixed( const float floating_value ) {
 	std::cout << "Float constructor called" << std::endl;
 	this->_fixedPoint = roundf(floating_value * (1 << _fractBits));
+}
+
+Fixed& Fixed::operator=( const Fixed& obj){
+	std::cout << "Copy assignment operator called" << std::endl;
+	_fixedPoint = obj._fixedPoint;
+	return (*this);
 }
 
 
