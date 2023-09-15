@@ -19,9 +19,9 @@ class ClapTrap {
 	public:
 		ClapTrap();
 		ClapTrap ( const ClapTrap& obj );
-		ClapTrap ( std::string name );
 		ClapTrap& operator=( const ClapTrap& obj );
 		~ClapTrap();
+		ClapTrap ( std::string name );
 
 		void				attack( const std::string& target );
 		void				takeDamage( unsigned int amount );

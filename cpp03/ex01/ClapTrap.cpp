@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Claptrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
@@ -9,17 +9,20 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "Default destructor called" << std::endl;
+	std::cout << "ClapTrap Default destructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap ( const ClapTrap& obj ) : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "ClapTrap Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
-	std::cout << "Assignment overload called" << std::endl;
-	*this = obj;
+	std::cout << "ClapTrap assignment overload called" << std::endl;
+	this->_name = obj._name;
+	this->_hitPoints = obj._hitPoints;
+	this->_energyPoints = obj._energyPoints;
+	this->_attackDamage = obj._attackDamage;
 	return (*this);
 }
 
@@ -28,7 +31,7 @@ void	ClapTrap::attack( const std::string& target) {
 		std::cout << RED << "ClapTrap " << this->_name << " energy points is " << this->_energyPoints << " and it can't act!" << RESET << std::endl;
 		return ;
 	}
-	std::cout << YELLOW << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage, so weak!" << RESET << std::endl;
+	std::cout << YELLOW << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << RESET << std::endl;
 	takeDamage( this->_attackDamage );
 	this->_energyPoints--;
 }

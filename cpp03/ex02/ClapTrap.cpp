@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "ClapTrap Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
@@ -9,16 +9,16 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap Default destructor called" << std::endl;
+	std::cout << "Default destructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap ( const ClapTrap& obj ) : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "ClapTrap Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
-	std::cout << "ClapTrap Assignment overload called" << std::endl;
+	std::cout << "Assignment overload called" << std::endl;
 	*this = obj;
 	return (*this);
 }
