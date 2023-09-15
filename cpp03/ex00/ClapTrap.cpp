@@ -19,7 +19,7 @@ ClapTrap::ClapTrap ( const ClapTrap& obj ) : _name(""), _hitPoints(10), _energyP
 
 ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
 	std::cout << "ClapTrap Assignment overload called" << std::endl;
-	*this = obj;
+
 	return (*this);
 }
 

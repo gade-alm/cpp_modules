@@ -2,7 +2,7 @@ SRCS		= main.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
-CC			= c++
+CXX			= c++
 
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 
 
@@ -11,7 +11,7 @@ NAME		= sed
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -fsanitize=address -g
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -fsanitize=address -g
 
 RM		= rm -rf
 

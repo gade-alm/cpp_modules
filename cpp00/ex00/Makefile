@@ -2,7 +2,7 @@ SRCS		= megaphone.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
-CC			= c++
+CXX			= c++
 
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
@@ -11,7 +11,7 @@ NAME		= megaphone
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 RM		= rm -rf
 
