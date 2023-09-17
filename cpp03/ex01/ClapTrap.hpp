@@ -10,6 +10,11 @@
 # define YELLOW  "\033[33m"      /* Yellow */
 # define BLUE    "\033[34m"      /* Blue */
 
+// Constructors colors
+# define MAGENTA "\033[35m"      /* Magenta */
+# define CYAN    "\033[36m"      /* Cyan */
+# define WHITE   "\033[37m"      /* White */
+
 class ClapTrap { 
 	protected:
 		std::string		_name;

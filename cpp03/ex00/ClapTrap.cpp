@@ -12,14 +12,17 @@ ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap Default destructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap ( const ClapTrap& obj ) : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap ( const ClapTrap& obj ) {
 	std::cout << "ClapTrap Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
 	std::cout << "ClapTrap Assignment overload called" << std::endl;
-
+	this->_name = obj._name;
+	this->_energyPoints = obj._energyPoints;
+	this->_attackDamage = obj._attackDamage;
+	this->_hitPoints = obj._hitPoints;
 	return (*this);
 }
 

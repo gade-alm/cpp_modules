@@ -5,11 +5,11 @@ ScavTrap::ScavTrap() {
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
-	std::cout << "ScavTrap Constructor Called" << std::endl;
+	std::cout << CYAN << "ScavTrap Constructor Called" << RESET << std::endl;
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << "ScavTrap Destructor Called" << std::endl;
+	std::cout << CYAN << "ScavTrap Destructor Called" << RESET << std::endl;
 }
 
 ScavTrap::ScavTrap( std::string name ) : ClapTrap(name) {
@@ -17,11 +17,11 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name) {
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
-	std::cout << "ScavTrap " << _name <<  " Constructor called" << std::endl;
+	std::cout << CYAN << "ScavTrap " << _name <<  " Constructor called" << RESET << std::endl;
 }
 
 ScavTrap::ScavTrap( const ScavTrap& obj ) {
-	std::cout << "ScavTrap Copy Constructor called" << std::endl;
+	std::cout << CYAN << "ScavTrap Copy Constructor called" << RESET << std::endl;
 	*this = obj;
 }
 
@@ -29,7 +29,7 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& obj ) {
 	this->_hitPoints = obj._hitPoints;
 	this->_energyPoints = obj._energyPoints;
 	this->_attackDamage = obj._attackDamage;
-	std::cout << "Scavtrap assignment overload called" << std::endl;
+	std::cout << CYAN << "Scavtrap assignment overload called" << RESET << std::endl;
 	return (*this);
 }
 
