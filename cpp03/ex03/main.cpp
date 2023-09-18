@@ -1,16 +1,9 @@
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main ( void ) {
-	ClapTrap a( "Henrique" );
-	ScavTrap b( "Gabriel" );
-	FragTrap c( "Miguel" );
+	{
+	DiamondTrap a ("I'm DiamondTrap");
 
-	a.attack("Tests");
-	b.attack("Shadow");
-	c.attack("Wind");
-
-	b.guardGate();
-	b.guardGate();
-	c.highFiveGuys();
+	a.whoAmI();
+	}
 }
