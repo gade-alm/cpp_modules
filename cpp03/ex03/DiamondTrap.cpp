@@ -1,29 +1,29 @@
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap() {
-	_name = ClapTrap::_name;
+	_name = "";
 	ClapTrap::_name = _name + "_clap_name";
-	_hitPoints = FragTrap::_hitPoints;
-	_attackDamage = FragTrap::_attackDamage;
-	_energyPoints = ScavTrap::_energyPoints;
-	std::cout << "DiamondTrap Default constructor called" << std::endl;
+	_hitPoints = FragTrap::hp;
+	_attackDamage = FragTrap::ad;
+	_energyPoints = ScavTrap::ep;
+	std::cout << GREEN << "DiamondTrap Default constructor called" << RESET << std::endl;
 }
 
 DiamondTrap::~DiamondTrap() {
-	std::cout << "DiamondTrap Default destructor called" << std::endl;
+	std::cout << GREEN << "DiamondTrap Default destructor called" << RESET << std::endl;
 }
 
-DiamondTrap::DiamondTrap( std::string name ) {
+DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name") {
 	_name = name;
 	ClapTrap::_name = _name + "_clap_name";
-	_hitPoints = FragTrap::_hitPoints;
-	_attackDamage = FragTrap::_attackDamage;
-	_energyPoints = ScavTrap::_energyPoints;
-	std::cout << "DiamondTrap Name Constructor Called" << std::endl;
+	_hitPoints = FragTrap::hp;
+	_attackDamage = FragTrap::ad;
+	_energyPoints = ScavTrap::ep;
+	std::cout << GREEN << "DiamondTrap Name Constructor Called" << RESET << std::endl;
 }
 
-DiamondTrap::DiamondTrap ( const DiamondTrap& obj ) {
-	std::cout << "DiamondTrap copy constructor called" << std::endl;
+DiamondTrap::DiamondTrap ( const DiamondTrap& obj ) : ClapTrap(), FragTrap(), ScavTrap(){
+	std::cout << GREEN << "DiamondTrap copy constructor called" << RESET << std::endl;
 	*this = obj;
 }
 

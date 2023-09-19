@@ -2,8 +2,9 @@
 
 int main ( void ) {
 	{
-	DiamondTrap a ("I'm DiamondTrap");
+	DiamondTrap a ("Diamond");
 
 	a.whoAmI();
+	a.attack("Emerald");
 	}
 }

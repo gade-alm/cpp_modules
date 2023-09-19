@@ -8,7 +8,7 @@ OBJS		= $(SRCS:.cpp=.o)
 
 CXX			= c++
 
-CXXFLAGS	= -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98 
+CXXFLAGS	= -Wall -Wextra -Werror -Wshadow -std=c++98 
 
 NAME		= DiamondTrap
 
