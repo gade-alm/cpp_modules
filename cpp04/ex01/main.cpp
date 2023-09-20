@@ -6,18 +6,15 @@ int main( void )
 	const Animal *animals[10];
 
 	int i = 0;
-	while (i++ < 5)
-	{
+	for (; i < 5; i++) {
 		animals[i] = new Dog();
 		std::cout << i << ". "; 
 		animals[i]->makeSound();
 	}
-	while (i < 10)
-	{
+	for (; i < 10; i++) {
 		animals[i] = new Cat();
 		std::cout << i << ". "; 
 		animals[i]->makeSound();
-		i++;
 	}
 	for (int j = 0; j < 10; j++)
 		delete animals[j];
