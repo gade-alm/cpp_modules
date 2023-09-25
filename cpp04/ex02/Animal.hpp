@@ -19,15 +19,10 @@ class Animal {
 	protected:
 		std::string _type;
 	public:
-		//Constructor
 		Animal();
 		Animal( const Animal& obj);
 		Animal& 	operator=(const Animal& obj);
-
-		//Destructor
 		virtual ~Animal();
-
-		//member functions
 		virtual void	makeSound( void ) const = 0;
 		std::string	getType( void ) const ;
 };
