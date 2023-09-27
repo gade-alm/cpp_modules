@@ -1,7 +1,9 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-class Ice {
+#include "AMateria.hpp"
+
+class Ice : public AMateria {
 	protected:
 
 	public:
@@ -9,6 +11,9 @@ class Ice {
 		~Ice();
 		Ice ( const Ice& obj);
 		Ice& operator=( const Ice& obj );
+
+		AMateria* clone() const;
+		void	use(int idx, ICharacter& target);
 };
 
 #endif
