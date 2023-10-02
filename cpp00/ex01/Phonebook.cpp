@@ -37,13 +37,14 @@ void	Phonebook::search(void)
 	}
 	std::cout << "Write the index of the contact you want to see:" << std::endl;
 	std::cin >> num;
-	if (std::cin.fail()) {
+	if (std::cin.fail())
 		std::cout << "The input must be a number." << std::endl;
-		std::cin.clear();
-		std::cin.ignore(2147483647, '\n');
-	}
+	else if (num < 0 || num > 7 || check_contact(num) == 0)
+		std::cout << "Insert valid number or contact doesn't exist" << std::endl;
 	else if (num >= 0 && num < i && check_contact(num) == 1)
 		get_info(num);
+	std::cin.clear();
+	std::cin.ignore(2147483647, '\n');
 	return ;
 }
 
@@ -102,5 +103,5 @@ void	Phonebook::get_info(int num)
 	std::cout << "Press enter to continue..." << std::endl;
 	std::cin.get();
 	std::cin.clear();
-	std::cin.ignore(2147483647, '\n');
+
 }
