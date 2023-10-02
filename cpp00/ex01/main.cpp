@@ -5,9 +5,9 @@ int main(void)
 	Phonebook	phonebook;
 	std::string	input;
 
+	system("clear");
 	while (!std::cin.eof())
 	{
-		system("clear");
 		std::cout << "Write a valid command(ADD, SEARCH or EXIT)" << std::endl;
 		getline(std::cin, input);
 		if (input == "ADD")
@@ -19,5 +19,6 @@ int main(void)
 			std::cout << "You exited the phonebook" << std::endl;
 			break ;
 		}
+		std::cin.clear();
 	}
 }
