@@ -17,8 +17,11 @@ Character::Character( const Character& obj) {
 }
 
 Character& Character::operator=( const Character& obj ) {
-	for (int i = 0; i < 4; i++) 
-		_inventory[i] = NULL;
+	for (int i = 0; i < 4; i++) {
+		if (_inventory[i] != NULL)
+			delete _inventory[i];
+		_inventory[i] = obj._inventory[i];
+	}
 	return (*this);
 }
 
@@ -28,12 +31,12 @@ Character::~Character() {
 			delete _inventory[i];
 }
 
-std::string	const& Character::getName()  const{
+std::string	const& Character::getName() const{
 	return _name;
 }
 
 void	Character::equip(AMateria* m) {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4 && m != NULL; i++)
 	{
 		if (_inventory[i] == NULL) {
 			_inventory[i] = m;
@@ -41,6 +44,8 @@ void	Character::equip(AMateria* m) {
 			return ;
 		}
 	}
+	if (m == NULL)
+		std::cout << "Can't equip non-existent materia" << std::endl;
 	std::cout << "Full inventory, can't equip new materia" << std::endl;
 }
 

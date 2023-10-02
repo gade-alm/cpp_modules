@@ -1,11 +1,10 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
+#include "ICharacter.hpp"
 #include "AMateria.hpp"
 
 class Cure : public AMateria {
-	protected:
-
 	public:
 		Cure();
 		~Cure();
@@ -13,7 +12,7 @@ class Cure : public AMateria {
 		Cure& operator=( const Cure& obj );
 
 		AMateria* clone() const;
-		void	use(int idx, ICharacter& target);
+		void	use( ICharacter& target );
 };
 
 #endif
