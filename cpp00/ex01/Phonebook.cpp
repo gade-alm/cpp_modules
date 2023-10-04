@@ -49,7 +49,7 @@ void	Phonebook::search(void)
 }
 
 void	Phonebook::add(void)
-{
+{	
 	std::string	input;
 
 	system("clear");

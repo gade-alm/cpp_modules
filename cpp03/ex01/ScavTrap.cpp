@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap( void ) {
 	_guardGate = 0;
 	_hitPoints = 100;
 	_energyPoints = 50;
@@ -8,7 +8,7 @@ ScavTrap::ScavTrap() {
 	std::cout << CYAN << "ScavTrap Constructor Called" << RESET << std::endl;
 }
 
-ScavTrap::~ScavTrap() {
+ScavTrap::~ScavTrap( void ) {
 	std::cout << CYAN << "ScavTrap Destructor Called" << RESET << std::endl;
 }
 
@@ -20,7 +20,7 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name) {
 	std::cout << CYAN << "ScavTrap " << _name <<  " Constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap& obj ) {
+ScavTrap::ScavTrap( const ScavTrap& obj ) : ClapTrap() {
 	std::cout << CYAN << "ScavTrap Copy Constructor called" << RESET << std::endl;
 	*this = obj;
 }
@@ -33,7 +33,7 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& obj ) {
 	return (*this);
 }
 
-void	ScavTrap::guardGate() {
+void	ScavTrap::guardGate( void ) {
 	if (_guardGate == 0) {
 		std::cout << "ScavTrap is now in Gate Keeper mode" << std::endl;
 		_guardGate = 1;

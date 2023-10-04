@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-int main(void)
+int main( void )
 {
 	std::string example = "HI THIS IS BRAIN";
 	std::string *ptr = &example;

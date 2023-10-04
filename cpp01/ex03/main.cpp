@@ -2,7 +2,7 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int main()
+int main( void )
 {
 	{
 		Weapon club = Weapon("crude spiked club");
@@ -10,6 +10,7 @@ int main()
 		bob.attack();
 		club.setType("some other type of club");
 		bob.attack();
+		std::cout << "------------2nd test------------" << std::endl;
 	}
 	{
 		HumanB jim("Jim");

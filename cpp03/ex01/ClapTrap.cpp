@@ -8,7 +8,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 	std::cout << MAGENTA << "ClapTrap " << name << " constructor called" << RESET <<std::endl;
 }
 
-ClapTrap::~ClapTrap() {
+ClapTrap::~ClapTrap( void ) {
 	std::cout << MAGENTA << "ClapTrap Default destructor called" << RESET << std::endl;
 }
 

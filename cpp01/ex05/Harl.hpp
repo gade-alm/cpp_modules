@@ -13,8 +13,8 @@ class Harl{
 		void	error( void );
 		void	(Harl::*pointer[4])( void );
 	public:
-		Harl();
-		~Harl();
+		Harl( void );
+		~Harl( void );
 		void	complain( std::string level );
 };
 

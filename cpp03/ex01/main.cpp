@@ -2,6 +2,7 @@
 
 int main ( void ) {
 	ClapTrap a("Henrique");
+	a.attack("");
 	a.attack("Joao");
 
 	ScavTrap b("Gabriel");

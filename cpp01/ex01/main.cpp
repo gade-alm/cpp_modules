@@ -1,8 +1,8 @@
 #include "Zombie.hpp"
 
-int main(void)
+int main( void )
 {
-	Zombie *zombies = zombieHorde(10, "Gabriel");
+	Zombie *zombies = zombieHorde(5, "Gabriel");
 
 	delete[] zombies;
 }

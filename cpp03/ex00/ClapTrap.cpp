@@ -1,14 +1,14 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap( void ) : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << "ClapTrap " << name << " constructor called" << std::endl;
 }
 
-ClapTrap::~ClapTrap() {
+ClapTrap::~ClapTrap( void ) {
 	std::cout << "ClapTrap Default destructor called" << std::endl;
 }
 
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap ( const ClapTrap& obj ) {
 	*this = obj;
 }
 
-ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
+ClapTrap& ClapTrap::operator=( const ClapTrap& obj ) {
 	std::cout << "ClapTrap Assignment overload called" << std::endl;
 	this->_name = obj._name;
 	this->_energyPoints = obj._energyPoints;
@@ -26,7 +26,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& obj) {
 	return (*this);
 }
 
-void	ClapTrap::attack( const std::string& target) {
+void	ClapTrap::attack( const std::string& target ) {
 	if (this->_energyPoints < 1) {
 		std::cout << RED << "ClapTrap " << this->_name << " energy points is " << this->_energyPoints << " and it can't act!" << RESET << std::endl;
 		return ;

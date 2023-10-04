@@ -1,12 +1,13 @@
 #include "File.hpp"
 
-std::string	subst_string(std::string s1, std::string s2, std::string newvar) {
+std::string	subst_string( std::string s1, std::string s2, std::string newvar ) {
 	int	i = -1;
 	while (newvar[++i]) {
 		if (!newvar.compare(i, s1.length(), s1))
 		{
 			newvar.erase(i, s1.length());
 			newvar.insert(i, s2);
+			i += s2.length();
 		}
 	}
 	return (newvar);
@@ -17,13 +18,13 @@ int main(int ac, char **av) {
 	std::ofstream	destiny;
 	std::string		checker;
 	std::string		output;
-	std::string		data = av[2];
 	std::string		newvar;
 
 	if (ac != 4){ // Check if there are valid number of arguments as the exercise asks
 		std::cout << "Wrong number of arguments!" << std::endl;
 		return 0;
 	}
+	std::string		data = av[2];
 	source.open(av[1]); // Open the first parameter if its a valid file, else will return an error
 	if (!source.is_open()) { 
 		std::cout << "Error on opening file" << std::endl;

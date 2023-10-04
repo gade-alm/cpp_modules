@@ -4,12 +4,12 @@
 
 class Weapon{
 	private:
-		std::string	_type;
+		std::string		_type;
 	public:
-		Weapon(std::string weapon);
-		~Weapon();
-		std::string	getType();
-		void		setType(std::string new_weapon);
+		Weapon( std::string weapon );
+		~Weapon( void );
+		std::string	getType( void );
+		void		setType( std::string new_weapon );
 };
 
 #endif

@@ -8,10 +8,10 @@ class Fixed{
 		int 				_fixedPoint;
 		static const int 	_fractBits = 8;
 	public:
-		Fixed();
-		Fixed(const Fixed& obj);
-		Fixed& operator=(const Fixed& obj);
-		~Fixed();
+		Fixed( void );
+		Fixed( const Fixed& obj );
+		Fixed& operator=( const Fixed& obj );
+		~Fixed( void );
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 };

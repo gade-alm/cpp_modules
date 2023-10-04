@@ -1,6 +1,6 @@
 #include "Harl.hpp"
 
-Harl::Harl(){
+Harl::Harl( void ){
 	pointer[0] = &Harl::debug;
 	pointer[1] = &Harl::info;
 	pointer[2] = &Harl::warning;
@@ -8,7 +8,7 @@ Harl::Harl(){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Harl::~Harl(){
+Harl::~Harl( void ){
 	std::cout << "Default destructor called" << std::endl;
 }
 
@@ -37,7 +37,6 @@ void	Harl::complain( std::string level ) {
 	for (size_t i = 0; i < 5; i++) {
 		if (!values[i].compare(level)) {
 			(this->*pointer[i])();
-			std::cout << "teste" << std::endl;
 		}
 	}
 }
