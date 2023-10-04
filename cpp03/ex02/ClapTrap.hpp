@@ -22,10 +22,10 @@ class ClapTrap {
 		int				_energyPoints;
 		int				_attackDamage;
 	public:
-		ClapTrap();
+		ClapTrap( void );
 		ClapTrap ( const ClapTrap& obj );
 		ClapTrap& operator=( const ClapTrap& obj );
-		~ClapTrap();
+		~ClapTrap( void );
 		ClapTrap ( std::string name );
 
 		void				attack( const std::string& target );

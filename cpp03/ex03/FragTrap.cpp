@@ -1,6 +1,6 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() {
+FragTrap::FragTrap( void ) {
 	_name = "";
 	_hitPoints = 100;
 	_energyPoints = 100;
@@ -8,7 +8,7 @@ FragTrap::FragTrap() {
 	std::cout << RED << "FragTrap Constructor Called" << RESET << std::endl;
 }
  
-FragTrap::~FragTrap() {
+FragTrap::~FragTrap( void ) {
 	std::cout << RED << "FragTrap Destructor Called" << RESET << std::endl;
 }
 
@@ -36,3 +36,4 @@ FragTrap& FragTrap::operator=( const FragTrap& obj ) {
 void	FragTrap::highFiveGuys( void ) {
 	std::cout << "FragTrap " << _name << "raised his hands to high five his friends" << std::endl;
 }
+

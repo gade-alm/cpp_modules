@@ -4,7 +4,7 @@ int main ( void ) {
 	ClapTrap();
 	ClapTrap a("Gabriel");
 	
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		std::cout << i + 1 << ".";
 		a.attack("Henrique");
