@@ -1,11 +1,11 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() {
+WrongCat::WrongCat( void ) {
 	_type = "WrongCat";
 	std::cout << "WrongCat Default Constructor Called" << std::endl;
 }
 
-WrongCat::~WrongCat() {
+WrongCat::~WrongCat( void ) {
 	std::cout << "WrongCat Default destructor called" << std::endl;
 }
 
@@ -15,8 +15,8 @@ WrongCat::WrongCat ( const WrongCat& obj) : WrongAnimal() {
 }
 
 WrongCat& WrongCat::operator=( const WrongCat& obj) {
-	_type = obj._type;
 	std::cout << "WrongCat assignment overload called" << std::endl;
+	_type = obj._type;
 	return (*this);
 }
 

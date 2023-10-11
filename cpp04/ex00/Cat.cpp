@@ -1,11 +1,11 @@
 #include "Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat( void ) {
 	_type = "Cat";
 	std::cout << YELLOW << "Cat Default Constructor Called" << RESET << std::endl;
 }
 
-Cat::~Cat() {
+Cat::~Cat( void ) {
 	std::cout << YELLOW << "Cat Default destructor called" << RESET << std::endl;
 }
 
@@ -15,8 +15,8 @@ Cat::Cat ( const Cat& obj) :Animal() {
 }
 
 Cat& Cat::operator=( const Cat& obj) {
-	_type = obj._type;
 	std::cout << YELLOW << "Cat assignment overload called" << RESET << std::endl;
+	_type = obj._type;
 	return (*this);
 }
 

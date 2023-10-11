@@ -20,12 +20,12 @@ class Animal {
 		std::string _type;
 	public:
 		//Constructor
-		Animal();
-		Animal( const Animal& obj);
-		Animal& 	operator=(const Animal& obj);
+		Animal( void );
+		Animal( const Animal& obj );
+		Animal& 	operator=( const Animal& obj );
 
 		//Destructor
-		virtual ~Animal();
+		virtual ~Animal( void );
 
 		//member functions
 		virtual void	makeSound( void ) const = 0;

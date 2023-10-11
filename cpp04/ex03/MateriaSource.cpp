@@ -36,8 +36,8 @@ void	MateriaSource::learnMateria( AMateria* materia ) {
 			return ;
 		}
 		if (i >= 3) {
-		std::cout << "No slots to learn new materias" << std::endl;
-		delete materia;
+			std::cout << "No slots to learn new materias" << std::endl;
+			delete materia;
 		return ;
 		}
 	}

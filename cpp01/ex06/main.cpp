@@ -3,8 +3,7 @@
 int main( int ac, char **av ) {
 	Harl	harl;
 	
-	if (ac != 2)
-	{
+	if (ac != 2) {
 		std::cout << "Wrong number of arguments!" << std::endl;
 		exit(EXIT_FAILURE);
 	}

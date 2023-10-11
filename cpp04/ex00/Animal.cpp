@@ -1,11 +1,11 @@
 #include "Animal.hpp"
 
-Animal::Animal() {
+Animal::Animal( void ) {
 	_type = "Animal";
 	std::cout << RED << "Animal Default Constructor Called" << RESET << std::endl;
 }
 
-Animal::~Animal() {
+Animal::~Animal( void ) {
 	std::cout << RED << "Animal Default destructor called" << RESET << std::endl;
 }
 

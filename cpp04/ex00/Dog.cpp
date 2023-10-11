@@ -1,11 +1,11 @@
 #include "Dog.hpp"
 
-Dog::Dog() {
+Dog::Dog( void ) {
 	this->_type = "Dog";
 	std::cout << BLUE << "Dog Default Constructor Called" << RESET << std::endl;
 }
 
-Dog::~Dog() {
+Dog::~Dog( void ) {
 	std::cout << BLUE << "Dog Default destructor called" << RESET << std::endl;
 }
 
@@ -15,8 +15,8 @@ Dog::Dog ( const Dog& obj) : Animal(){
 }
 
 Dog& Dog::operator=( const Dog& obj ) {
-	_type = obj._type;
 	std::cout << BLUE << "Dog assignment overload called" << RESET << std::endl;
+	_type = obj._type;
 	return (*this);
 }
 

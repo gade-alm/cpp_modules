@@ -44,8 +44,10 @@ void	Character::equip(AMateria* m) {
 			return ;
 		}
 	}
-	if (m == NULL)
+	if (m == NULL){
 		std::cout << "Can't equip non-existent materia" << std::endl;
+		return ;
+	}
 	std::cout << "Full inventory, can't equip new materia" << std::endl;
 }
 
@@ -57,7 +59,7 @@ void	Character::unequip( int idx ) {
 		std::cout << "No materia equipped on the slot" << std::endl;
 	}
 	else
-		std::cout << "Invalid slot number, please try again" << std::endl;
+		std::cout << "Invalid slot number to unequip, please try again" << std::endl;
 }
 
 void	Character::use( int idx, ICharacter& target ) { 

@@ -1,28 +1,28 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() {
+Fixed::Fixed( void ) {
 	_fixedPoint = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed() {
+Fixed::~Fixed( void ) {
 	std::cout << "Default destructor called" << std::endl;
 }
 
 //copy constructor
-Fixed::Fixed (const Fixed& obj) {
+Fixed::Fixed (const Fixed& obj ) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
-Fixed& Fixed::operator=( const Fixed& obj){
+Fixed& Fixed::operator=( const Fixed& obj ){
 	std::cout << "Copy assignment operator called" << std::endl;
 	_fixedPoint = obj._fixedPoint;
 	return (*this);
 }
 
 //converts integer to the corresponding fixed point value
-Fixed::Fixed( const int integer) {
+Fixed::Fixed( const int integer ) {
 	std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = integer * (1 << _fractBits);
 }
@@ -52,7 +52,7 @@ void	Fixed::setRawBits( int const raw ) {
 	this->_fixedPoint = raw;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
+std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {
 	os << obj.toFloat();
 	return (os);
 }

@@ -13,6 +13,8 @@ Cat::~Cat() {
 
 Cat::Cat ( const Cat& obj) :Animal() {
 	std:: cout << YELLOW << "Cat copy constructor called" << RESET << std::endl;
+	_type = "Cat";
+	_brain = new Brain();
 	*this = obj;
 }
 

@@ -9,12 +9,12 @@ class Brain {
 		std::string ideas[100];
 	public:
 		//Constructors
-		Brain ();
+		Brain ( void );
 		Brain ( const Brain& obj);
 		Brain& operator=( const Brain& obj);
 
 		//destructors
-		~Brain();
+		~Brain( void );
 
 };
 

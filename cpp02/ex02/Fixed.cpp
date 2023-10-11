@@ -1,22 +1,22 @@
 #include "Fixed.hpp"
 
 //Constructors and Destructors
-Fixed::Fixed() {
+Fixed::Fixed( void ) {
 	_fixedPoint = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed() {
+Fixed::~Fixed( void ) {
 	std::cout << "Default destructor called" << std::endl;
 }
 
-Fixed::Fixed (const Fixed& obj) {
+Fixed::Fixed ( const Fixed& obj ) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 //converts integer to the corresponding fixed point value
-Fixed::Fixed( const int integer) {
+Fixed::Fixed( const int integer ) {
 	std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = integer * (1 << _fractBits);
 }
@@ -27,7 +27,7 @@ Fixed::Fixed( const float floating_value ) {
 	this->_fixedPoint = roundf(floating_value * (1 << _fractBits));
 }
 
-Fixed& Fixed::operator=( const Fixed& obj){
+Fixed& Fixed::operator=( const Fixed& obj ){
 	std::cout << "Copy assignment operator called" << std::endl;
 	_fixedPoint = obj._fixedPoint;
 	return (*this);
@@ -125,7 +125,7 @@ bool Fixed::operator!=( const Fixed& obj ) {
 }
 
 //output stream
-std::ostream& operator<<(std::ostream& os, const Fixed& obj) {
+std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {
 	os << obj.toFloat();
 	return (os);
 }
@@ -150,7 +150,7 @@ const Fixed& Fixed::min( const Fixed &lhs, const Fixed &rhs ) {
 	return (rhs);
 }
 
-const Fixed& Fixed::max(const Fixed &lhs, const Fixed &rhs) {
+const Fixed& Fixed::max( const Fixed &lhs, const Fixed &rhs ) {
 	if (lhs.getRawBits() > rhs.getRawBits())
 		return (lhs);
 	return (rhs);	

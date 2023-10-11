@@ -6,12 +6,12 @@
 class Cat : public Animal {
 	public:
 		//Constructors
-		Cat();
+		Cat( void );
 		Cat( const Cat& obj);
 		Cat& operator=( const Cat& obj);
 		
 		//Destructors
-		~Cat();
+		~Cat( void );
 
 		//member functions
 		void	makeSound( void ) const;

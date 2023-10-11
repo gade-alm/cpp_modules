@@ -6,12 +6,12 @@
 class Dog : public Animal {
 	public:
 		//Constructor
-		Dog();
+		Dog( void );
 		Dog( const Dog& obj);
 		Dog& operator=( const Dog& obj);
 
 		//Destructor
-		~Dog();
+		~Dog( void );
 
 		//Member Functions
 		void	makeSound( void ) const;

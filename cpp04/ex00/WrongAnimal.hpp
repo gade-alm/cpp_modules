@@ -9,12 +9,12 @@ class WrongAnimal {
 		std::string _type;
 	public:
 		//constructors
-		WrongAnimal();
-		WrongAnimal( const WrongAnimal& obj);
-		WrongAnimal& operator=( const WrongAnimal& obj);
+		WrongAnimal( void );
+		WrongAnimal( const WrongAnimal& obj );
+		WrongAnimal& operator=( const WrongAnimal& obj );
 
 		//destructors
-		~WrongAnimal();
+		~WrongAnimal( void );
 
 		//member functions
 		void		makeSound() const;

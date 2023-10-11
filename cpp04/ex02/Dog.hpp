@@ -9,12 +9,12 @@ class Dog : public Animal {
 		Brain* _brain;
 	public:
 		//Constructor
-		Dog();
-		Dog( const Dog& obj);
-		Dog& operator=( const Dog& obj);
+		Dog( void );
+		Dog( const Dog& obj );
+		Dog& operator=( const Dog& obj );
 
 		//Destructor
-		~Dog();
+		~Dog( void );
 
 		//Member Functions
 		void	makeSound( void ) const;
