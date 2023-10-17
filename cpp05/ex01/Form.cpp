@@ -1,20 +1,20 @@
 #include "Form.hpp"
 
-Form::Form( void ) : _name("Gabriel"), _signed(0){
+Form::Form( void ) : _name("Gabriel"), _signed(0), _signGrade(0), _requiredGrade(0){
 }
 
 Form::~Form( void ){
 }
 
-Form::Form( const Form& copy ){
+Form::Form( const Form& copy ) : _name("Gabriel"), _signed(0), _signGrade(0), _requiredGrade(0){
 	*this = copy;
 }
 
-Form& Form::operator=( const Form& copy ) : _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _requiredGrade(copy._requiredGrade){
+Form& Form::operator=( const Form& copy ) {
 	return (*this);
 }
 
-std::ostream& operator<<( std::ostream& os, const Form& obj ) {
+std::ostream& operator<<( std::ostream& os, Form& obj ) {
 	os << "Name: "<< obj.getName() << std::endl << "Signed: " << obj.isSigned() << std::endl \
 	<< "Sign Grade: " << obj.getSignGrade() << std::endl << "Required Grade: " << obj.getRequiredGrade() << std::endl;
 	return os;
@@ -25,15 +25,22 @@ const char* Form::getName( void ) const{
 }
 
 bool	Form::isSigned( void ) const{
-	if (_signed == 1)
-		return 1;
-	return 0;
+	return _signed;
 }
 
-const int	Form::getSignGrade( void ) const{
+int		Form::getSignGrade( void ){
 	return _signGrade;
 }
 
-const int	Form::getRequiredGrade( void ) const{
+int	Form::getRequiredGrade( void ){
 	return _requiredGrade;
+}
+
+bool	Form::beSigned(Bureaucrat &bureaucrat) {
+	if (bureaucrat.getGrade() < _requiredGrade) {
+		_signed = 1;
+		return 1;
+	}
+	throw Form::GradeTooLowException();
+	return 0;
 }

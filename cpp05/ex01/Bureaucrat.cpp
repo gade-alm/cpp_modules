@@ -47,8 +47,18 @@ const char* Bureaucrat::getName( void ) const {
 	return _name;
 }
 
- int Bureaucrat::getGrade( void ) const {
+int		Bureaucrat::getGrade( void ) const {
 	return _grade;
+}
+
+bool	Bureaucrat::signForm ( Form &form ) {
+	if (form.beSigned(*this) == 0 && form.getSignGrade() > _grade){
+		std::cout << _name << "signed" << form.getName() << std::endl;
+		return 1;
+	}
+	else
+		std::cout << this->_name << "couldn't sign the form" << std::endl;
+	return 0;
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& obj ) {

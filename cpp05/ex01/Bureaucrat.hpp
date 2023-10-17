@@ -2,8 +2,9 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
-
+#include "Form.hpp"
 //Range 1 to 150, 1 higher 150 lower
+class Form;
 
 class Bureaucrat {
 	private:
@@ -17,6 +18,7 @@ class Bureaucrat {
 		Bureaucrat& operator=( const Bureaucrat& copy );
 		int	incrementGrade( int value );
 		int	decreaseGrade( int value );
+		bool signForm( Form &form );
 		const char* getName( void ) const ;
 		int	getGrade( void ) const ;
 	class GradeTooHighException : public std::exception{

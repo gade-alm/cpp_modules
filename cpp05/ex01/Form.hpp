@@ -2,6 +2,9 @@
 # define FORM_HPP
 
 # include <iostream>
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
 	private:
@@ -15,9 +18,10 @@ class Form {
 		Form( const Form& copy);
 		Form& operator=( const Form& copy );
 		const char* getName( void ) const;
-		bool		isSigned( void ) const;
-		const int	getSignGrade( void ) const;
-		const int	getRequiredGrade( void ) const;
+		bool	isSigned( void ) const;
+		int	getSignGrade( void );
+		int	getRequiredGrade( void ) ;
+		bool	beSigned(Bureaucrat &bureaucrat);
 		class GradeTooHighException : public std::exception{
 		public:
 			const char *what() const throw();
