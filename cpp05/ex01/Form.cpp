@@ -11,6 +11,7 @@ Form::Form( const Form& copy ) : _name("Gabriel"), _signed(0), _signGrade(0), _r
 }
 
 Form& Form::operator=( const Form& copy ) {
+	(void)copy;
 	return (*this);
 }
 
