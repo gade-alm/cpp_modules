@@ -17,10 +17,11 @@ class Form {
 		~Form( void );
 		Form( const Form& copy);
 		Form& operator=( const Form& copy );
+		Form( const char* _name, const int _signGrade, const int _requiredGrade );
 		const char* getName( void ) const;
 		bool	isSigned( void ) const;
-		int	getSignGrade( void );
-		int	getRequiredGrade( void ) ;
+		 int	getSignGrade( void ) const ;
+		 int	getRequiredGrade( void ) const ;
 		bool	beSigned(Bureaucrat &bureaucrat);
 		class GradeTooHighException : public std::exception{
 		public:

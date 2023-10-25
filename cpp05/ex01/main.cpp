@@ -1,83 +1,40 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main( void ) {
+	{
+	std::cout << "-------------TEST 1-------------" << std::endl;
+	std::cout << "Grade too low test" << std::endl;
+
 	try {
-		std::cout << "Trying grade 1" << std::endl;
-		Bureaucrat highest ("Test1", 1);
-		std::cout << highest;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
+		std::cout << "Trying signForm" << std::endl;
+		Bureaucrat gabriel("Gabriel", 50);
+		Form		form("Formulary", 2, 5 );
+
+		std::cout << gabriel << std::endl;
+		std::cout << form << std::endl;
+		form.beSigned(gabriel);
+		gabriel.signForm(form);
+	}
+	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
 	}
-	std::cout << "----------------------------------" << std::endl;
+	{
+	std::cout << "-------------TEST 2-------------" << std::endl;
+	std::cout << "Grade is OK test" << std::endl;
+	Bureaucrat gabriel("Gabriel", 1);
+	Form		form("Formulary", 2, 5 );
+
+	std::cout << gabriel << std::endl;
+	std::cout << form << std::endl;
 	try {
-		std::cout << "Trying grade 150" << std::endl;
-		Bureaucrat highest ("Test150", 150);
-		std::cout << highest;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
+		std::cout << "Trying signForm" << std::endl;
+		form.beSigned(gabriel);
+		gabriel.signForm(form);
+	}
+	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
 	}
-	std::cout << "----------------------------------" << std::endl;
-	try {
-		std::cout << "Trying grade 151" << std::endl;
-		Bureaucrat highest ("Teste151", 151);
-		std::cout << highest;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "----------------------------------" << std::endl;
-	try {
-		std::cout << "Trying grade 0" << std::endl;
-		Bureaucrat highest ("Test0", 0);
-		std::cout << highest;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "----------------------------------" << std::endl;
-	try {
-		std::cout << "Trying grade 1" << std::endl;
-		Bureaucrat highest ("TestDecrease1", 1);
-		std::cout << highest;
-		std::cout << "Decreasing value by 2" << std::endl;
-		highest.decreaseGrade(2);
-		std::cout << highest;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "----------------------------------" << std::endl;
-	try {
-		std::cout << "Trying grade 150" << std::endl;
-		Bureaucrat highest ("TestIncrement150", 150);
-		std::cout << highest;
-		std::cout << "Incrementing value by 2" << std::endl;
-		highest.incrementGrade(2);
-		std::cout << highest;
-		std::cout << "----------------------------------" << std::endl;
-		}
-	catch (Bureaucrat::GradeTooHighException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException & e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "----------------------------------" << std::endl;
 }

@@ -52,16 +52,16 @@ int		Bureaucrat::getGrade( void ) const {
 }
 
 bool	Bureaucrat::signForm ( Form &form ) {
-	if (form.beSigned(*this) == 0 && form.getSignGrade() > _grade){
-		std::cout << _name << "signed" << form.getName() << std::endl;
+	if (form.beSigned(*this) == 1 && form.getSignGrade() > _grade){
+		std::cout << _name << " signed " << form.getName() << std::endl;
 		return 1;
 	}
 	else
-		std::cout << this->_name << "couldn't sign the form" << std::endl;
+		std::cout << this->_name << " couldn't sign the form" << std::endl;
 	return 0;
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& obj ) {
-	os << obj.getName() << " , bureaucrat grade " << obj.getGrade() << std::endl;
+	os << obj.getName() << " ,bureaucrat grade " << obj.getGrade() << std::endl;
 	return os;
 }
