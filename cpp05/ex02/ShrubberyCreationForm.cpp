@@ -42,7 +42,7 @@ std::string 	ShrubberyCreationForm::getTarget( void ) const{
 void		ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
 
 	if (this->isSigned()) {
-		if (this->getRequiredGrade() > executor.getGrade()) {
+		if (this->getRequiredGrade() >= executor.getGrade()) {
 			std::ofstream output_stream;
 			std::string	output;
 			output = getTarget();

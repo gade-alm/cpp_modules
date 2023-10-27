@@ -26,7 +26,7 @@ std::string		RobotomyRequestForm::getTarget( void ) const {
 
 void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 	if (this->isSigned()) {
-		if (this->getRequiredGrade() > executor.getGrade()) {
+		if (this->getRequiredGrade() >= executor.getGrade()) {
 			std::cout << "Makes some drilling noises" << std::endl;
 			srand((unsigned) time(0));
 			if (rand() % 2 == 0)

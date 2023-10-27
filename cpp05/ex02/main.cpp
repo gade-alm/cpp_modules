@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main( void ) {
 	{
@@ -21,6 +22,18 @@ int main( void ) {
 		Bureaucrat			burea("Henrique", 1);
 		burea.signForm(robot);
 		robot.execute(burea);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	}
+		std::cout << "----------------3rd Test----------------" << std::endl;
+	{
+	try {
+		PresidentialPardonForm president("Gabriel");
+		Bureaucrat			bur("Henrique", 6);
+		bur.signForm(president);
+		president.execute(bur);
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
