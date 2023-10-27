@@ -56,8 +56,8 @@ void		ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
 			std::cout << "ShrubberyCreationForm executed" << std::endl;
 		}
 		else
-			std::cout << "The form is signed but can't be executed" << std::endl;
+			std::cout << "The Shrubbery form is signed but can't be executed" << std::endl;
 	}
 	else
-		std::cout << "Can't execute the form" << std::endl;
+		std::cout << "Can't execute the Shrubbery form" << std::endl;
 }
