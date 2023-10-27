@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : _target(""), _tree("") {
+ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm("Tree", 145, 137) {
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm( void ) {
@@ -8,12 +8,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void ) {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& copy ) : AForm() {
-	_target = copy._target;
-	_tree = copy._tree;
+	*this = copy;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=( const ShrubberyCreationForm& copy ) {
-	*this = copy;
+	_target = copy._target;
+	_tree = copy._tree;
 	return (*this);
 }
 
@@ -33,7 +33,6 @@ ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) :  AForm("Tre
 			"   0 |   |  /|\\\n"
 			"     |   |   /\\\n"
 		"================\n";
-std::cout << _tree << std::endl;
 }
 
 std::string 	ShrubberyCreationForm::getTarget( void ) const{
@@ -41,15 +40,24 @@ std::string 	ShrubberyCreationForm::getTarget( void ) const{
 }
 
 void		ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
-	std::ofstream output_stream;
-	std::string		output;
 
-	output = getTarget();
-	output_stream.open(output, std::ios::out);
-	if (!output_stream.is_open()) {
-		std::cout << "Error opening file" << std::endl;
-		return ;
+	if (this->isSigned()) {
+		if (this->getRequiredGrade() > executor.getGrade()) {
+			std::ofstream output_stream;
+			std::string	output;
+			output = getTarget();
+			output += "_shrubbery";
+			output_stream.open(output.c_str(), std::ios::out);
+			if (!output_stream.is_open()) {
+				std::cout << "Error opening file" << std::endl;
+				return ;
+			}
+			output_stream << _tree;
+			std::cout << "ShrubberyCreationForm executed" << std::endl;
+		}
+		else
+			std::cout << "The form is signed but can't be executed" << std::endl;
 	}
 	else
-		std::cout << _tree << std::endl;
+		std::cout << "Can't execute the form" << std::endl;
 }

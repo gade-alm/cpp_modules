@@ -20,8 +20,8 @@ class AForm {
 		AForm( const char* _name, const int _signGrade, const int _requiredGrade );
 		const char* getName( void ) const;
 		bool	isSigned( void ) const;
-		int	getSignGrade( void ) const ;
-		int	getRequiredGrade( void ) const ;
+		int		getSignGrade( void ) const ;
+		int		getRequiredGrade( void ) const ;
 		bool	beSigned( Bureaucrat &bureaucrat );
 		virtual void	execute( Bureaucrat const & executor ) const = 0;
 		class GradeTooHighException : public std::exception{
