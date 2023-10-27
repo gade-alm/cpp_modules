@@ -51,7 +51,7 @@ int		Bureaucrat::getGrade( void ) const {
 	return _grade;
 }
 
-bool	Bureaucrat::signForm ( Form &form ) {
+bool	Bureaucrat::signForm ( AForm &form ) {
 	if (form.beSigned(*this) == 1 && form.getSignGrade() > _grade){
 		std::cout << _name << " signed " << form.getName() << std::endl;
 		return 1;

@@ -20,9 +20,9 @@ class Form {
 		Form( const char* _name, const int _signGrade, const int _requiredGrade );
 		const char* getName( void ) const;
 		bool	isSigned( void ) const;
-		 int	getSignGrade( void ) const ;
-		 int	getRequiredGrade( void ) const ;
-		bool	beSigned(Bureaucrat &bureaucrat);
+		int	getSignGrade( void ) const ;
+		int	getRequiredGrade( void ) const ;
+		bool	beSigned( Bureaucrat &bureaucrat );
 		class GradeTooHighException : public std::exception{
 		public:
 			const char *what() const throw();

@@ -4,7 +4,7 @@
 #include <iostream>
 #include "AForm.hpp"
 //Range 1 to 150, 1 higher 150 lower
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private:
@@ -18,7 +18,7 @@ class Bureaucrat {
 		Bureaucrat& operator=( const Bureaucrat& copy );
 		int	incrementGrade( int value );
 		int	decreaseGrade( int value );
-		bool signForm( Form &form );
+		bool signForm( AForm &form );
 		const char* getName( void ) const ;
 		int	getGrade( void ) const ;
 	class GradeTooHighException : public std::exception{
