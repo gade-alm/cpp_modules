@@ -14,7 +14,7 @@ class AForm {
 		const int	_requiredGrade;
 	public:
 		AForm( void );
-		~AForm( void );
+		virtual ~AForm( void );
 		AForm( const AForm& copy);
 		AForm& operator=( const AForm& copy );
 		AForm( const char* _name, const int _signGrade, const int _requiredGrade );

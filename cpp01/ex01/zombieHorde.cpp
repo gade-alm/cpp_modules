@@ -2,7 +2,7 @@
 
 Zombie* zombieHorde( int N, std::string name )
 {
-	if (N <= 0 || N > 214748347){
+	if (N <= 0 || N > 2147483647){
 		std::cout << "Number on wrong scope" << std::endl;
 		return 0;
 	}

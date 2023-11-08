@@ -30,8 +30,8 @@ ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) :  AForm("Tre
 			"   | |   |\n"
 		    "   | |   |\n"
 		    "   | |   |   O\n"
-			"   0 |   |  /|\\\n"
-			"     |   |   /\\\n"
+			"   O |   |  /|\\\n"
+			"     |   |  / \\\n"
 		"================\n";
 }
 

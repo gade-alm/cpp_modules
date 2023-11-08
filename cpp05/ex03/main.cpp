@@ -2,41 +2,50 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main( void ) {
+	Intern estagiario;
+	Bureaucrat gabriel("Gabriel", 1);
+	AForm *formulary;
+
 	{
+	formulary = estagiario.makeForm("robotomy request", "Henrique");
 	try {
-		ShrubberyCreationForm plant("Gabriel");
-		Bureaucrat			bureau("Henrique", 135);
-		bureau.signForm(plant);
-		plant.execute(bureau);
-	}
-	catch (std::exception &e) {
+		if (formulary != NULL) {
+			formulary->beSigned(gabriel);
+			formulary->execute(gabriel);
+		}
+		}
+	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;
 	}
+	delete formulary;
 	}
-	std::cout << "----------------2nd Test----------------" << std::endl;
 	{
+	formulary = estagiario.makeForm("presidential pardon", "Henrique");
 	try {
-		RobotomyRequestForm robot("Gabriel");
-		Bureaucrat			burea("Henrique", 1);
-		burea.signForm(robot);
-		robot.execute(burea);
-	}
-	catch (std::exception &e) {
+		if (formulary != NULL) {
+			formulary->beSigned(gabriel);
+			formulary->execute(gabriel);
+		}
+		}
+	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;
 	}
+	delete formulary;
 	}
-		std::cout << "----------------3rd Test----------------" << std::endl;
 	{
+	formulary = estagiario.makeForm("shrubbery creation", "Henrique");
 	try {
-		PresidentialPardonForm president("Gabriel");
-		Bureaucrat			bur("Henrique", 6);
-		bur.signForm(president);
-		president.execute(bur);
-	}
-	catch (std::exception &e) {
+		if (formulary != NULL) {
+			formulary->beSigned(gabriel);
+			formulary->execute(gabriel);
+		}
+		}
+	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;
 	}
+	delete formulary;
 	}
 }
