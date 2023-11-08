@@ -1,6 +1,7 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB( std::string name ) : _name(name), _weapon(NULL) {
+		std::cout << "HumanB: " << _name << " was created without any weapon" << std::endl;
 }
 
 HumanB::~HumanB( void ) {
@@ -9,6 +10,7 @@ HumanB::~HumanB( void ) {
 
 void	HumanB::setWeapon( Weapon &weapon ) {
 	_weapon = &weapon;
+	std::cout << _name << " equipped a " << _weapon->getType() << std::endl;
 }
 
 void	HumanB::attack( void ) { 

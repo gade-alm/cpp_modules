@@ -7,7 +7,7 @@ CXX			= c++
 
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 
 
-NAME		= harl
+NAME		= harlFilter
 
 all: $(NAME)
 
@@ -17,7 +17,7 @@ $(NAME): $(OBJS)
 RM		= rm -rf
 
 t: re 
-	./harl
+	./harlFilter
 
 clean: 
 	$(RM) $(OBJS)
