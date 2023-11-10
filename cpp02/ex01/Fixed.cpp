@@ -1,55 +1,50 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed( void ) {
-	_fixedPoint = 0;
+	_fixed = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed( void ) {
-	std::cout << "Default destructor called" << std::endl;
-}
-
-//copy constructor
-Fixed::Fixed (const Fixed& obj ) {
+Fixed::Fixed( const Fixed& copy ){
 	std::cout << "Copy constructor called" << std::endl;
-	*this = obj;
+	*this = copy;
 }
 
-Fixed& Fixed::operator=( const Fixed& obj ){
+Fixed::Fixed( const int& value ){
+	std::cout << "Int constructor called" << std::endl;
+	_fixed = value << _bits;
+}
+
+Fixed::Fixed( const float& value ){
+	std::cout << "Float constructor called" << std::endl;
+	_fixed = roundf(value * (1 << _bits));
+}
+
+Fixed& Fixed::operator=( const Fixed& copy ){
 	std::cout << "Copy assignment operator called" << std::endl;
-	_fixedPoint = obj._fixedPoint;
+	setRawBits(copy.getRawBits());
 	return (*this);
 }
 
-//converts integer to the corresponding fixed point value
-Fixed::Fixed( const int integer ) {
-	std::cout << "Int constructor called" << std::endl;
-	this->_fixedPoint = integer * (1 << _fractBits);
+Fixed::~Fixed( void ) {
+	std::cout << "Destructor called" << std::endl;
 }
 
-//converts float to the corresponding fixed point value
-Fixed::Fixed( const float floating_value ) {
-	std::cout << "Float constructor called" << std::endl;
-	this->_fixedPoint = roundf(floating_value * (1 << _fractBits));
-}
-
-//that converts the fixed-point value to a floating-point value
-float	Fixed::toFloat( void ) const {
-	return ((1.0 * abs(_fixedPoint)) / (1 << _fractBits));
-}
-
-//that converts the fixed-point value to an integer value.
-int		Fixed::toInt( void ) const {
-	return (this->_fixedPoint / 1 >> this->_fractBits);
-}
-
-int		Fixed::getRawBits( void ) const {
-	// std::cout << "getRawBits function called" << std::endl;
-	return (_fixedPoint);
+int	Fixed::getRawBits( void ) const{
+	std::cout << "getRawBits member function called" << std::endl;
+	return (_fixed);
 }
 
 void	Fixed::setRawBits( int const raw ) {
-	this->_fixedPoint = raw;
+	_fixed = raw;
+}
+
+int		Fixed::toInt( void ) const {
+	return (_fixed / 1 >> _bits);
+}
+
+float	Fixed::toFloat( void ) const {
+	return ((1.0 * abs(_fixed)) / (1 << _bits));
 }
 
 std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {

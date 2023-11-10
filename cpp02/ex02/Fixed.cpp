@@ -1,133 +1,121 @@
 #include "Fixed.hpp"
 
-//Constructors and Destructors
 Fixed::Fixed( void ) {
-	_fixedPoint = 0;
+	_fixed = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed( void ) {
-	std::cout << "Default destructor called" << std::endl;
-}
-
-Fixed::Fixed ( const Fixed& obj ) {
+Fixed::Fixed ( const Fixed& copy ) {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = obj;
+	*this = copy;
 }
 
-//converts integer to the corresponding fixed point value
-Fixed::Fixed( const int integer ) {
+Fixed::Fixed( const int& value ) {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixedPoint = integer * (1 << _fractBits);
+	_fixed = value * (1 << _bits);
 }
 
-//converts float to the corresponding fixed point value
-Fixed::Fixed( const float floating_value ) {
+Fixed::Fixed( const float& value ) {
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixedPoint = roundf(floating_value * (1 << _fractBits));
+	_fixed = roundf(value * (1 << _bits));
 }
 
-Fixed& Fixed::operator=( const Fixed& obj ){
-	std::cout << "Copy assignment operator called" << std::endl;
-	_fixedPoint = obj._fixedPoint;
+Fixed& Fixed::operator=( const Fixed& copy ){
+	// std::cout << "Copy assignment operator called" << std::endl;
+	_fixed = copy._fixed;
 	return (*this);
 }
 
-
-//Conversions fixed_point flot and int
-//that converts the fixed-point value to a floating-point value
-float	Fixed::toFloat( void ) const {
-	return ((1.0 * abs(_fixedPoint)) / (1 << _fractBits));
+Fixed::~Fixed( void ) {
+	std::cout << "Destructor called" << std::endl;
 }
 
-//that converts the fixed-point value to an integer value.
-int		Fixed::toInt( void ) const {
-	return (this->_fixedPoint / 1 >> this->_fractBits);
-}
-
-
-//Get and set values
 int		Fixed::getRawBits( void ) const {
 	// std::cout << "getRawBits function called" << std::endl;
-	return (_fixedPoint);
+	return (_fixed);
 }
 
 void	Fixed::setRawBits( int const raw ) {
-	this->_fixedPoint = raw;
+	_fixed = raw;
 }
 
-
-//Overloads
-Fixed Fixed::operator+( const Fixed& obj ) {
-	return (this->toFloat() + obj.toFloat());
+int		Fixed::toInt( void ) const {
+	return (_fixed / 1 >> _bits);
 }
 
-Fixed Fixed::operator-( const Fixed& obj ) { 
-	return (this->toFloat() + obj.toFloat());
+float	Fixed::toFloat( void ) const {
+	return ((1.0 * abs(_fixed)) / (1 << _bits));
 }
 
-Fixed Fixed::operator*( const Fixed& obj ) { 
-	return (this->toFloat() * obj.toFloat());
+std::ostream& operator<<( std::ostream& os, const Fixed& copy ) {
+	os << copy.toFloat();
+	return (os);
 }
 
-Fixed Fixed::operator/( const Fixed& obj ) {
-	return (this->toFloat() / obj.toFloat());
+Fixed Fixed::operator+( const Fixed& copy ) {
+	return (this->toFloat() + copy.toFloat());
+}
+
+Fixed Fixed::operator-( const Fixed& copy ) { 
+	return (this->toFloat() + copy.toFloat());
+}
+
+Fixed Fixed::operator*( const Fixed& copy ) { 
+	return (this->toFloat() * copy.toFloat());
+}
+
+Fixed Fixed::operator/( const Fixed& copy ) {
+	return (this->toFloat() / copy.toFloat());
 }
 
 //Pre-increment
 Fixed Fixed::operator++ ( ){
-	++_fixedPoint;
+	++_fixed;
 	return (*this);
 }
 
 //Pre-Increment
 Fixed Fixed::operator-- ( ){
-	--_fixedPoint;
+	--_fixed;
 	return (*this);
 }
 
 //Post-increment
 Fixed Fixed::operator++ ( int ){
 	Fixed temp(*this);
-	operator++();
+	temp.operator++();
 	return (temp);
 }
 
 //Post-increment
 Fixed Fixed::operator-- ( int ){
 	Fixed temp(*this);
-	operator--();
+	temp.operator--();
 	return (temp);
 }
 
-bool Fixed::operator>( const Fixed& obj ) {
-	return (this->_fixedPoint > obj._fixedPoint);
+bool Fixed::operator>( const Fixed& copy ) {
+	return (this->_fixed > copy._fixed);
 }
 
-bool Fixed::operator<( const Fixed& obj ) {
-	return (!operator>(obj._fixedPoint));
+bool Fixed::operator<( const Fixed& copy ) {
+	return (!operator>(copy._fixed));
 }
 
-bool Fixed::operator>=( const Fixed& obj ) {
-	return (this->_fixedPoint >= obj._fixedPoint);
+bool Fixed::operator>=( const Fixed& copy ) {
+	return (this->_fixed >= copy._fixed);
 }
 
-bool Fixed::operator<=( const Fixed& obj ) {
-	return (this->_fixedPoint <= obj._fixedPoint);
+bool Fixed::operator<=( const Fixed& copy ) {
+	return (this->_fixed <= copy._fixed);
 }
 
-bool Fixed::operator==( const Fixed& obj ) {
-	return (this->_fixedPoint == obj._fixedPoint);
+bool Fixed::operator==( const Fixed& copy ) {
+	return (this->_fixed == copy._fixed);
 }
 
-bool Fixed::operator!=( const Fixed& obj ) {
-	return (this->_fixedPoint != obj._fixedPoint);
-}
-
-//output stream
-std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {
-	os << obj.toFloat();
-	return (os);
+bool Fixed::operator!=( const Fixed& copy ) {
+	return (this->_fixed != copy._fixed);
 }
 
 //compare functions
