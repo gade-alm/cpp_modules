@@ -42,7 +42,7 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 		this->_hitPoints -= amount;
 	}
 	else
-		std::cout << "ClapTrap " << this->_name << "is already dead💀" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is already dead💀" << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount ) {
@@ -51,7 +51,7 @@ void	ClapTrap::beRepaired( unsigned int amount ) {
 		return ;
 	}
 	if (this->_hitPoints < 1) {
-		std::cout << RED << "ClapTrap " << this->_name << "is already dead💀" << RESET << std::endl;
+		std::cout << RED << "ClapTrap " << this->_name << " is already dead💀" << RESET << std::endl;
 		return ;
 	}
 	std::cout << GREEN << "ClapTrap " << this->_name << " just healed " << amount << RESET << std::endl;
