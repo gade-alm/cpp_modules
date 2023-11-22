@@ -12,7 +12,7 @@ int main( void ) {
 	{
 	formulary = estagiario.makeForm("robotomy request", "Henrique");
 	try {
-		if (formulary != NULL) {
+		if (formulary) {
 			formulary->beSigned(gabriel);
 			formulary->execute(gabriel);
 		}
@@ -23,9 +23,9 @@ int main( void ) {
 	delete formulary;
 	}
 	{
-	formulary = estagiario.makeForm("presidential pardon", "Henrique");
+	formulary = estagiario.makeForm("presidential pardn", "Henrique");
 	try {
-		if (formulary != NULL) {
+		if (formulary) {
 			formulary->beSigned(gabriel);
 			formulary->execute(gabriel);
 		}
