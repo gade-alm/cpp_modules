@@ -6,15 +6,15 @@ int main( void )
 {
 	{
 	const Animal* meta = new Animal();
-	std::cout << meta->getType() << " " << std::endl;
+	std::cout << RED << "Type of animal is: " << meta->getType() << RESET << std::endl;
 	meta->makeSound(); // output no sound
 
 	const Animal* j = new Dog();
-	std::cout << j->getType() << " " << std::endl;
+	std::cout << BLUE << "Type of animal is: " << j->getType() << RESET << std::endl;
 	j->makeSound(); // output dog sound!
 
 	const Animal* i = new Cat();
-	std::cout << i->getType() << " " << std::endl;
+	std::cout << YELLOW << "Type of animal is: " << i->getType() << RESET << std::endl;
 	i->makeSound(); //will output the cat sound!
 
 	delete i;
@@ -22,11 +22,11 @@ int main( void )
 	delete meta;
 	}
 	const WrongAnimal* wrong = new WrongAnimal();
-	std::cout << wrong->getType() << " " << std::endl;
+	std::cout << CYAN << "Type of animal is: " << wrong->getType() << RESET << std::endl;
 	wrong->makeSound();
 
 	const WrongAnimal* x = new WrongCat();
-	std::cout << x->getType() << std::endl;
+	std::cout << MAGENTA << x->getType() << RESET << std::endl;
 	x->makeSound();
 
 	delete x;
