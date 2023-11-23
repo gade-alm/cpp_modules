@@ -26,9 +26,14 @@ int main( void )
 	wrong->makeSound();
 
 	const WrongAnimal* x = new WrongCat();
-	std::cout << MAGENTA << x->getType() << RESET << std::endl;
+	std::cout << MAGENTA << "Type of animal is: " << x->getType() << RESET << std::endl;
 	x->makeSound();
 
+	const WrongCat* cat = new WrongCat();
+	std::cout << "Type of animal is: " << cat->getType() << std::endl;
+	cat->makeSound();
+
+	delete cat;
 	delete x;
 	delete wrong;
 }

@@ -14,10 +14,10 @@ class WrongAnimal {
 		WrongAnimal& operator=( const WrongAnimal& obj );
 
 		//destructors
-		virtual ~WrongAnimal( void );
+		~WrongAnimal( void );
 
 		//member functions
-		virtual void		makeSound() const;
+		void		makeSound() const;
 		std::string	getType() const;
 };
 
