@@ -3,6 +3,7 @@
 
 int main( void )
 {
+	{
 	const Animal *animals[10];
 
 	int i = 0;
@@ -18,5 +19,5 @@ int main( void )
 	}
 	for (int j = 0; j < 10; j++)
 		delete animals[j];
-	return 0;
+	}
 }
