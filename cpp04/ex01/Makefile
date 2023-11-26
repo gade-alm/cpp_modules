@@ -8,14 +8,14 @@ OBJS		= $(SRCS:.cpp=.o)
 
 CXX			= c++
 
-CXXFLAGS	= -Wall -Wextra -Werror -Wshadow -std=c++98 
+CXXFLAGS	= -Wall -Wextra -Werror -Wshadow -g -std=c++98 
 
 NAME		= Animal
 
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -fsanitize=address -g
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -fsanitize=address
 
 RM		= rm -rf
 

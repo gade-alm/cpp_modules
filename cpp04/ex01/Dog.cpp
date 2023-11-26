@@ -27,3 +27,11 @@ Dog& Dog::operator=( const Dog& obj ) {
 void	Dog::makeSound( void ) const {
 	std::cout << BLUE << "Woof woof" << RESET << std::endl;
 }
+
+void	Dog::insertIdea( std::string idea ) {
+	this->_brain->learnIdeas(idea);
+}
+
+void	Dog::thinking( void ) const {
+	std::cout << BLUE << "Dog is thinking: \"" << this->_brain->showIdea() << "\""<< RESET << std::endl;
+}

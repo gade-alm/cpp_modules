@@ -11,7 +11,7 @@ Cat::~Cat() {
 	delete _brain;
 }
 
-Cat::Cat ( const Cat& obj) :Animal() {
+Cat::Cat ( const Cat& obj) :AAnimal() {
 	std:: cout << YELLOW << "Cat copy constructor called" << RESET << std::endl;
 	_type = "Cat";
 	_brain = new Brain();
@@ -26,4 +26,12 @@ Cat& Cat::operator=( const Cat& obj) {
 
 void	Cat::makeSound( void ) const {
 	std::cout << YELLOW << "Miau" << RESET << std::endl;
+}
+
+void	Cat::insertIdea( std::string idea ) {
+	this->_brain->learnIdeas(idea);
+}
+
+void	Cat::thinking( void ) const {
+	std::cout << YELLOW << "Cat is thinking: \"" << this->_brain->showIdea() << "\"" << RESET << std::endl;
 }

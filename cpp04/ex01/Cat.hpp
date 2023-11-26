@@ -18,6 +18,8 @@ class Cat : public Animal {
 
 		//member functions
 		void	makeSound( void ) const;
+		void	thinking( void ) const;
+		void	insertIdea( std::string idea );
 };
 
 #endif

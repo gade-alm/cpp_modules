@@ -11,7 +11,7 @@ Dog::~Dog( void ) {
 	delete _brain;
 }
 
-Dog::Dog ( const Dog& obj ) : Animal(){
+Dog::Dog ( const Dog& obj ) : AAnimal(){
 	std:: cout << BLUE << "Dog copy constructor called" << RESET << std::endl;
 	_type = "Dog";
 	_brain = new Brain();
@@ -26,4 +26,12 @@ Dog& Dog::operator=( const Dog& obj ) {
 
 void	Dog::makeSound( void ) const {
 	std::cout << BLUE << "Woof woof" << RESET << std::endl;
+}
+
+void	Dog::insertIdea( std::string idea ) {
+	this->_brain->learnIdeas(idea);
+}
+
+void	Dog::thinking( void ) const {
+	std::cout << BLUE << "Dog is thinking: \"" << this->_brain->showIdea() << "\""<< RESET << std::endl;
 }

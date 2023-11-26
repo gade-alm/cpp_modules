@@ -16,6 +16,8 @@ class Brain {
 		//destructors
 		~Brain( void );
 
+		void learnIdeas( std::string idea );
+		std::string	showIdea( void );
 };
 
 #endif

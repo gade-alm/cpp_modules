@@ -3,6 +3,15 @@
 
 int main( void )
 {
+	Dog basic;
+
+	Dog temp = basic;
+
+	temp.insertIdea("To com outra coisa na cabeca");
+	basic.insertIdea("Testando ideias");
+	basic.thinking();
+	temp.thinking();
+
 	{
 	const Animal *animals[10];
 
