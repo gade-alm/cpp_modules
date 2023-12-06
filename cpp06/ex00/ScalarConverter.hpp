@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <iomanip>
+#include <typeinfo>
 
 #define CHAR 1
 #define FLOAT 2

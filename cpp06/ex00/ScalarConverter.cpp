@@ -38,9 +38,13 @@ void	ScalarConverter::convert( const std::string& av ){
 		case 1: {
 			charValue = av[0];
 			std::cout << "Char: " << "'" << charValue << "'" <<std::endl;
+			std::cout << "Type of Char: " << typeid((charValue[0])).name() << std::endl;
 			std::cout << "Int: " << static_cast<int>(charValue[0]) << std::endl;
-			std::cout << "Float: " << std::fixed << std::setprecision(3) << static_cast<float>(charValue[0]) << 'f' << std::endl;
-			std::cout << "Double: " << std::fixed << std::setprecision(3) << static_cast<double>(charValue[0]) << std::endl;
+			std::cout << "Type of Int: " << typeid(static_cast<int>(charValue[0])).name() << std::endl;
+			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(charValue[0]) << 'f' << std::endl;
+			std::cout << "Type of Float: " << typeid(static_cast<float>(charValue[0])).name() << std::endl;
+			std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(charValue[0]) << std::endl;
+			std::cout << "Type of Double: " << typeid(static_cast<double>(charValue[0])).name() << std::endl;
 			break ;
 		}
 		case 2: {
@@ -49,9 +53,13 @@ void	ScalarConverter::convert( const std::string& av ){
 			else
 				charValue = "Can't be printed";
 			std::cout << "Char: " << "'" << charValue << "'" << std::endl;
+			std::cout << "Type of Char: " << typeid((charValue[0])).name() << std::endl;
 			std::cout << "Int: " << static_cast<int>(floatValue) << std::endl;
-			std::cout << "Float: " << std::fixed << std::setprecision(3) << floatValue << 'f' << std::endl;
-			std::cout << "Double: " << std::fixed << std::setprecision(3) << static_cast<double>(floatValue) << std::endl;
+			std::cout << "Type of Int: " << typeid(static_cast<int>(floatValue)).name() << std::endl;
+			std::cout << "Float: " << std::fixed << std::setprecision(1) << floatValue << 'f' << std::endl;
+			std::cout << "Type of Float: " << typeid(floatValue).name() << std::endl;
+			std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(floatValue) << std::endl;
+			std::cout << "Type of Int: " << typeid(static_cast<double>(floatValue)).name() << std::endl;
 			break ;
 		}
 		default: {
