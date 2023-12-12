@@ -9,7 +9,11 @@
 #include <typeinfo>
 
 #define CHAR 1
-#define FLOAT 2
+#define INT 2
+#define FLOAT 3
+#define DOUBLE 4
+#define MAX_INT 2147483647
+#define MIN_INT -2147483648
 
 class ScalarConverter {
 	private: 
@@ -20,5 +24,15 @@ class ScalarConverter {
 		~ScalarConverter ( void );
 		static void	convert ( const std::string &av );
 };
+
+int		getType ( std::string value );
+int		checkChar( std::string value );
+int		checkInt( std::string value );
+int		checkFloat( std::string value );
+int		checkDouble( std::string value );
+void	printChar( std::string value );
+void	printInt( std::string value );
+void	printFloat( std::string value );
+void	printDouble( std::string value );
 
 #endif
