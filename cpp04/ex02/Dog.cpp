@@ -3,6 +3,7 @@
 Dog::Dog( void ) {
 	this->_type = "Dog";
 	_brain = new Brain();
+	this->_brain->learnIdeas("");
 	std::cout << BLUE << "Dog Default Constructor Called" << RESET << std::endl;
 }
 
@@ -15,6 +16,7 @@ Dog::Dog ( const Dog& obj ) : AAnimal(){
 	std:: cout << BLUE << "Dog copy constructor called" << RESET << std::endl;
 	_type = "Dog";
 	_brain = new Brain();
+	this->_brain->learnIdeas("");
 	*this = obj;
 }
 

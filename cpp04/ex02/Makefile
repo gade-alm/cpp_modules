@@ -15,7 +15,7 @@ NAME		= Animal
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -fsanitize=address -g
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -fsanitize=address
 
 RM		= rm -rf
 

@@ -19,7 +19,6 @@ int main( void ) {
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	}
 	{
 	std::cout << "-------------TEST 2-------------" << std::endl;
 	std::cout << "Grade is OK test" << std::endl;
@@ -37,4 +36,5 @@ int main( void ) {
 		std::cerr << e.what() << std::endl;
 	}
 	}
+}
 }

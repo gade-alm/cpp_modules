@@ -53,8 +53,8 @@ int main( void ) {
 		std::cout << "Trying grade 1" << std::endl;
 		Bureaucrat highest ("TestDecrease1", 1);
 		std::cout << highest;
-		std::cout << "Decreasing value by 2" << std::endl;
-		highest.decreaseGrade(2);
+		std::cout << "Decreasing value by 1" << std::endl;
+		highest.decreaseGrade(1);
 		std::cout << highest;
 		}
 	catch (Bureaucrat::GradeTooHighException & e) {
