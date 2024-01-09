@@ -24,18 +24,22 @@ void	ScalarConverter::convert( const std::string& av ){
 	std::cout << "---------------------------CONVERSION VALUES---------------------------" << std::endl;
 	switch (type) {
 		case 1: {
+			std::cout << "You sent a CHAR" << std::endl;
 			printChar(av);
 			return ;
 		}
 		case 2: {
+			std::cout << "You sent an INT" << std::endl;
 			printInt(av);
 			return ;
 		}
 		case 3: {
+			std::cout << "You sent a FLOAT" << std::endl;
 			printFloat(av);
 			return ;
 		}
 		case 4: {
+			std::cout << "You sent a DOUBLE" << std::endl;
 			printDouble(av);
 			return ;
 		}
@@ -79,19 +83,19 @@ int checkInt( std::string value ) {
 }
 
 int	checkFloat( std::string value ) {
-	size_t i = 0, check = 0;
+	size_t i = 0, check = 0, fTotal = 0, numbers = 0;
 
 	if (value[i] == '-' || value[i] == '+')
 		i++;
-	for (; i < value.length() && isdigit(value[i]); i++) {		
+	for (; i < value.length(); i++) {	
+		if (value[i] == '.')
+			check++;
+		if (value[i] == 'f')
+			fTotal++;
+		if (isdigit(value[i]))
+			numbers++;
 	}
-	if (value[i] == '.') {
-		check = i;
-		i++;
-	}
-	for(; i < value.length() && isdigit(value[i]); i++) {
-	}
-	if (value[value.length() - 1] == 'f') {
+	if (value[i - 1] == 'f' && check == 1 && fTotal == 1 && numbers > 0) {
 		return (FLOAT);
 	}
 	if (check == i || value[i] != '\0')
