@@ -1,5 +1,4 @@
 SRCS		= main.cpp \
-				Span.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -7,7 +6,7 @@ CXX			= c++
 
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 
 
-NAME		= Span
+NAME		= MutantStack
 
 all: $(NAME)
 
