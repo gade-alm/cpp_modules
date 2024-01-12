@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 
+#include <cstring>
+
 ScalarConverter::ScalarConverter( void ) {
 }
 
@@ -16,10 +18,27 @@ ScalarConverter& ScalarConverter::operator=( ScalarConverter& copy ) {
 	return *this;
 }
 
+void	printPseudos( std::string value ) {
+
+	std::cout << "Char: Can't be printed" <<std::endl;
+	std::cout << "Int: Can't be printed" << std::endl;
+	std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(strtod(value.c_str(), NULL)) << 'f' << std::endl;
+	std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(strtod(value.c_str(), NULL)) << std::endl;
+	return ;
+}
+
 void	ScalarConverter::convert( const std::string& av ){
 	
 	std::string	charValue = "";
 	int 	type = getType(av);
+	std::string names[6] = {"+inf", "-inf", "nan", "nanf", "+inff", "-inff"};
+	for (size_t i = 0; i < 6; i++)
+	{
+		if (!strcmp(av.c_str(), names[i].c_str())){
+			printPseudos(av);
+			return ;
+		}
+	}
 
 	std::cout << "---------------------------CONVERSION VALUES---------------------------" << std::endl;
 	switch (type) {
@@ -133,7 +152,7 @@ void	printInt( std::string value ) {
 		std::cout << "Int: overflow value" << std::endl;
 	else
 		std::cout << "Int: " << myInt << std::endl;
-	std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(myInt) << 'f' << std::endl;
+	std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(float(myInt)) << 'f' << std::endl;
 	std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(myInt) << std::endl;
 }
 
@@ -176,6 +195,6 @@ void	printDouble( std::string value ) {
 		std::cout << "Int: overflow value" << std::endl;
 	else
 		std::cout << "Int: " << static_cast<int>(myDouble) << std::endl;
-	std::cout << "Float: " << std::fixed << std::setprecision(1) << (myDouble) << 'f' << std::endl;
+	std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(myDouble) << 'f' << std::endl;
 	std::cout << "Double: " << std::fixed << std::setprecision(1) << myDouble << std::endl;
 }

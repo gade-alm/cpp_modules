@@ -24,6 +24,7 @@ class ScalarConverter {
 		static void	convert ( const std::string &av );
 };
 
+void	printPseudos( std::string value );
 int		getType ( std::string value );
 int		checkChar( std::string value );
 int		checkInt( std::string value );
