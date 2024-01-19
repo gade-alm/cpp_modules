@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form( void ) : _name("Dummy"), _signed(0), _signGrade(0), _requiredGrade(0){
+Form::Form( void ) : _name(""), _signed(0), _signGrade(0), _requiredGrade(0){
 }
 
 Form::~Form( void ){

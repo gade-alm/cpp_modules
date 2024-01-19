@@ -7,17 +7,17 @@
 
 class Bureaucrat {
 	private:
-		const char* _name;
-		int			_grade;
+		const std::string _name;
+		int				_grade;
 	public:
 		Bureaucrat( void );
-		Bureaucrat ( const char* name, int grade );
+		Bureaucrat ( std::string name, int grade );
 		~Bureaucrat( void );
 		Bureaucrat( const Bureaucrat& copy );
 		Bureaucrat& operator=( const Bureaucrat& copy );
-		int	incrementGrade( int value );
-		int	decreaseGrade( int value );
-		const char* getName( void ) const ;
+		int	incrementGrade( void );
+		int	decreaseGrade( void );
+		const std::string &getName( void ) const ;
 		int	getGrade( void ) const ;
 	class GradeTooHighException : public std::exception{
 		public:
