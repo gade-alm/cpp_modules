@@ -1,10 +1,5 @@
 #include "iter.hpp"
 
-template <typename T>
-void	print(T x) {
-	std::cout << x << std::endl;
-}
-
 int main ( void ) {
 
 	int a[] = {1, 2, 3, 4};

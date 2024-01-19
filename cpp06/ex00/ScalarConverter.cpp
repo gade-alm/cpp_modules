@@ -191,10 +191,13 @@ void	printDouble( std::string value ) {
 		std::cout << "Char: " << "'" << static_cast<char>(myDouble) << "'" << std::endl;
 	else
 		std::cout << "Char: Can't be printed" << std::endl;
-	if (myDouble > MAX_INT || myDouble < MIN_INT) 
+	if (myDouble > MAX_INT || myDouble < MIN_INT) {
 		std::cout << "Int: overflow value" << std::endl;
-	else
+		std::cout << "Float: overeflow value" << std::endl;
+	}
+	else {
 		std::cout << "Int: " << static_cast<int>(myDouble) << std::endl;
-	std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(myDouble) << 'f' << std::endl;
+		std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(myDouble) << 'f' << std::endl;
+	}
 	std::cout << "Double: " << std::fixed << std::setprecision(1) << myDouble << std::endl;
 }
