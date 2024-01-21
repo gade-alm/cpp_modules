@@ -39,7 +39,7 @@ int main( void ) {
 	std::cout << "----------------------------------" << std::endl;
 	try {
 		std::cout << "Trying grade 1" << std::endl;
-		Bureaucrat highest ("TestDecrease 1", 1);
+		Bureaucrat highest ("TestIncrease 1", 1);
 		std::cout << highest;
 		std::cout << "Incrementing value by 1" << std::endl;
 		highest.incrementGrade();
@@ -51,7 +51,7 @@ int main( void ) {
 	std::cout << "----------------------------------" << std::endl;
 	try {
 		std::cout << "Trying grade 150" << std::endl;
-		Bureaucrat highest ("TestIncrement 150", 150);
+		Bureaucrat highest ("TestDecrease 150", 150);
 		std::cout << highest;
 		std::cout << "Decreasing value by 1" << std::endl;
 		highest.decreaseGrade();

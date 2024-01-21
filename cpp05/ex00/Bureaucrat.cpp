@@ -13,11 +13,11 @@ Bureaucrat::Bureaucrat ( std::string name, int grade ) : _name(name), _grade(gra
 		throw GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat ( const Bureaucrat& copy ) {
+Bureaucrat::Bureaucrat ( const Bureaucrat& copy ) : _name(copy._name) {
 	*this = copy;
 }
 
-Bureaucrat& Bureaucrat::operator= ( const Bureaucrat& copy)  {
+Bureaucrat& Bureaucrat::operator= ( const Bureaucrat& copy) {
 	_grade = copy._grade;
 	return (*this);
 }
