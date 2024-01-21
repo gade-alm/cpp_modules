@@ -29,6 +29,6 @@ clean:
 	$(RM) $(OBJS)
 
 fclean:
-	$(RM) $(OBJS) $(NAME)
+	$(RM) $(OBJS) $(NAME) Henrique_shrubbery
 
 re:fclean all
