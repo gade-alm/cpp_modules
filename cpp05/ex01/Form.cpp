@@ -6,15 +6,19 @@ Form::Form( void ) : _name(""), _signed(0), _signGrade(0), _requiredGrade(0){
 Form::~Form( void ){
 }
 
-Form::Form( const Form& copy ) : _name("Dummy"), _signed(0), _signGrade(0), _requiredGrade(0){
+Form::Form( const Form& copy ) : _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _requiredGrade(copy._requiredGrade){
 	*this = copy;
 }
 
 Form::Form( const char* name, const int signGrade, const int requiredGrade) : _name(name), _signed(0), _signGrade(signGrade), _requiredGrade(requiredGrade){
+	if (_signGrade > 150 || _requiredGrade > 150)
+		throw GradeTooLowException();
+	else if (_signGrade < 0 || _requiredGrade < 0)
+		throw GradeTooHighException();
 }
 
 Form& Form::operator=( const Form& copy ) {
-	(void)copy;
+	_signed = copy._signed;
 	return (*this);
 }
 
