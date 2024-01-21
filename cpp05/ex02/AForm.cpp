@@ -1,20 +1,24 @@
 #include "AForm.hpp"
 
-AForm::AForm( void ) : _name("Dummy"), _signed(0), _signGrade(0), _requiredGrade(0){
+AForm::AForm( void ) : _name(""), _signed(0), _signGrade(0), _requiredGrade(0){
 }
 
 AForm::~AForm( void ){
 }
 
-AForm::AForm( const AForm& copy ) : _name("Dummy"), _signed(0), _signGrade(0), _requiredGrade(0){
+AForm::AForm( const AForm& copy ) : _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _requiredGrade(copy._requiredGrade){
 	*this = copy;
 }
 
 AForm::AForm( const char* name, const int signGrade, const int requiredGrade) : _name(name), _signed(0), _signGrade(signGrade), _requiredGrade(requiredGrade){
+	if (_signGrade > 150 || _requiredGrade > 150)
+		throw GradeTooLowException();
+	else if (_signGrade < 0 || _requiredGrade < 0)
+		throw GradeTooHighException();
 }
 
 AForm& AForm::operator=( const AForm& copy ) {
-	(void)copy;
+	_signed = copy._signed;
 	return (*this);
 }
 
