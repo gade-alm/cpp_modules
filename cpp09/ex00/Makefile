@@ -16,14 +16,6 @@ $(NAME): $(OBJS)
 
 RM		= rm -rf
 
-t: re
-	clear
-	./$(NAME) data.csv
-
-tv: re
-	clear
-	valgrind ./$(NAME) data.csv
-
 clean: 
 	$(RM) $(OBJS)
 

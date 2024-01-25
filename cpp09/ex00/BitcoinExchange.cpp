@@ -14,7 +14,9 @@ void	openDatabase( char* baseName ) {
 	database.open( "data.csv" );
 	if (!database.is_open()) {
 		std::cout << "Couldn't open the database, please check your file" << std::endl;
+		return ;
 	}
+	input.seekg(0, input.beg);
 	makeConversion ( input, database );
 }
 
@@ -54,6 +56,7 @@ void	checkInput( std::ifstream &base ) {
 		std::cerr << e.what() << std::endl;
 		}
 	}
+	
 }
 
 static bool checkLeapYear( unsigned int year ){
@@ -121,12 +124,32 @@ void	checkDate( std::string date ) {
 
 void	makeConversion ( std::ifstream &input, std::ifstream &database ) {
 
-	std::string bitcoin;
-	std::map	<std::string, float> bitmap;
-	std::map	<std::string, float> inpmap;
+	std::string 						inputValues;
+	std::string							databaseValues;
+	std::map	<std::string, float>	inputMap;
+	std::map	<std::string, float> 	bitMap;
+	std::map 	<std::string, float>::iterator itinp;
+	std::map	<std::string, float>::iterator itdat;
 
-	(void)input;
-	while (getline(database, bitcoin)) {
-		std::cout << bitcoin << std::endl;
+	input.clear();
+	input.seekg(0);
+	while (std::getline(input, inputValues))
+		inputMap[inputValues.substr(0, inputValues.find('|') - 1).c_str()] = atof(inputValues.substr(inputValues.find_last_of('|') + 1).c_str());
+	while (std::getline(database, databaseValues))
+		bitMap[databaseValues.substr(0, databaseValues.find(',')).c_str()] = atof(databaseValues.substr(databaseValues.find_last_of(',') + 1).c_str());
+	
+	for (itinp = inputMap.begin(); itinp != inputMap.end(); itinp++)
+	{
+		for (itdat = bitMap.begin(); itdat != bitMap.end(); itdat++){
+			if (itinp->first == itdat->first) {
+				std::cout << itinp->first << " => " << itinp->second << " = " << (itinp->second * itdat->second) << std::endl;
+				break ;
+			// }
+			// else if (itinp->first > itdat->first) {
+			// 	itdat--;
+			// 	std::cout << itinp->first << " => " << itinp->second << " = " << (itinp->second * itdat->second) << std::endl;
+			// 	break ;
+			}
+		}
 	}
 }
