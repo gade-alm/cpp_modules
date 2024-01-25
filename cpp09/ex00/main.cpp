@@ -6,6 +6,11 @@ int main(int ac, char **av) {
 		std::cout << "Error on parameters, please check your inputs!" << std::endl;
 		return 1;
 	}
-	openDatabase( av[1] );
+	try {
+		openDatabase( av[1] );
+	}
+	catch ( std::exception &e ) {
+		std::cerr << e.what() << std::endl;
+	}
 	return 0;
 }

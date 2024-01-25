@@ -23,8 +23,8 @@
 
 void		openDatabase( char* baseName );
 void		checkInput( std::ifstream &base );
-void		checkDate( std::string date );
-void		checkConversion( std::string value );
+// void		checkDate( std::string date );
+// void		checkConversion( std::string value );
 void		makeConversion( std::ifstream &input, std::ifstream &database );
 
 #endif

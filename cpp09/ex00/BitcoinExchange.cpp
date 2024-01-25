@@ -20,14 +20,16 @@ void	openDatabase( char* baseName ) {
 	makeConversion ( input, database );
 }
 
-void	checkConversion( std::string value ) {
+static int	checkConversion( std::string value ) {
 
 	float	money;
 
 	money = std::atof(value.substr(value.find_last_of('|') + 1).c_str());
-	if (money <= 0 || money >= 1000)
-		throw std::out_of_range("Wrong money input value");
-	return ;
+	if (money <= 0 || money >= 1000) {
+		std::cout << "Wrong money input value" << std::endl;
+		return 1;
+	}
+	return 0;
 
 }
 
@@ -38,7 +40,6 @@ void	checkInput( std::ifstream &base ) {
 	bool		first = false;
 
 	while (getline(base, checker)) {
-	try {
 		if (!first) {
 			if (checker != "date | value")
 				throw std::runtime_error("Wrong header, check first line");
@@ -49,15 +50,11 @@ void	checkInput( std::ifstream &base ) {
 			if (!isdigit(checker[i]) && (checker[i] != '.' && checker[i] != '|' \
 			&& checker[i] != '|' && checker[i] != '-' && checker[i] != 32))
 				throw std::runtime_error("Wrong input, check your file");
-		checkDate( checker );
+		// checkDate( checker );
 		checkConversion( checker );
 		}
-	catch ( std::exception &e ) {
-		std::cerr << e.what() << std::endl;
-		}
-	}
-	
 }
+
 
 static bool checkLeapYear( unsigned int year ){
 	if (year % 400 == 0)
@@ -122,6 +119,25 @@ void	checkDate( std::string date ) {
 	return ;
 }
 
+static int	checkDateReturn ( std::string date ) {
+
+	long long	year = 0;
+	long long	month = 0;
+	long long	day = 0;
+
+	std::string data = date.substr( 0, date.find('|') );
+	if (data.size() < 8)
+		return 1;
+	year = atoll(date.substr(0, date.find('-')).c_str());
+	if (year < 2010)
+		return 1;
+	month = atoll(date.substr(date.find('-') + 1, '-').c_str());
+	day = atoll(date.substr(date.find_last_of('-') + 1).c_str());
+	if (!verifyDate( year, month, day ))
+		return 1;
+	return 0;
+}
+
 void	makeConversion ( std::ifstream &input, std::ifstream &database ) {
 
 	std::string 						inputValues;
@@ -130,26 +146,42 @@ void	makeConversion ( std::ifstream &input, std::ifstream &database ) {
 	std::map	<std::string, float> 	bitMap;
 	std::map 	<std::string, float>::iterator itinp;
 	std::map	<std::string, float>::iterator itdat;
+	bool								first = 0;
 
 	input.clear();
 	input.seekg(0);
-	while (std::getline(input, inputValues))
-		inputMap[inputValues.substr(0, inputValues.find('|') - 1).c_str()] = atof(inputValues.substr(inputValues.find_last_of('|') + 1).c_str());
-	while (std::getline(database, databaseValues))
-		bitMap[databaseValues.substr(0, databaseValues.find(',')).c_str()] = atof(databaseValues.substr(databaseValues.find_last_of(',') + 1).c_str());
+	(void)database;
+	while (std::getline(input, inputValues)) {
+		if (!first) {
+			first = true;
+			continue ;
+		}
+		for (size_t i = 0; i < inputValues.size(); i++)
+			if (!isdigit(inputValues[i]) && (inputValues[i] != '.' && inputValues[i] != '|' \
+			&& inputValues[i] != '|' && inputValues[i] != '-' && inputValues[i] != 32))
+				std::cout << "Wrong input, check your line" << std::endl;
+		else if (checkDateReturn( inputValues ))
+			std::cout << "Wrong date input, check your dates" << std::endl;
+		else if (checkConversion( inputValues ))
+			std::cout << "Wrong value, check your input values" << std::endl;
+	}
+}
+	// 	inputMap[inputValues.substr(0, inputValues.find('|') - 1).c_str()] = atof(inputValues.substr(inputValues.find_last_of('|') + 1).c_str());
+	// while (std::getline(database, databaseValues))
+	// 	bitMap[databaseValues.substr(0, databaseValues.find(',')).c_str()] = atof(databaseValues.substr(databaseValues.find_last_of(',') + 1).c_str());
 	
-	for (itinp = inputMap.begin(); itinp != inputMap.end(); itinp++)
-	{
-		for (itdat = bitMap.begin(); itdat != bitMap.end(); itdat++){
-			if (itinp->first == itdat->first) {
-				std::cout << itinp->first << " => " << itinp->second << " = " << (itinp->second * itdat->second) << std::endl;
-				break ;
+	// for (itinp = inputMap.begin(); itinp != inputMap.end(); itinp++)
+	// {
+	// 	for (itdat = bitMap.begin(); itdat != bitMap.end(); itdat++){
+	// 		if (itinp->first == itdat->first) {
+	// 			std::cout << itinp->first << " => " << itinp->second << " = " << (itinp->second * itdat->second) << std::endl;
+	// 			break ;
 			// }
 			// else if (itinp->first > itdat->first) {
 			// 	itdat--;
 			// 	std::cout << itinp->first << " => " << itinp->second << " = " << (itinp->second * itdat->second) << std::endl;
 			// 	break ;
-			}
-		}
-	}
-}
+// 			}
+// 		}
+// 	}
+// }
