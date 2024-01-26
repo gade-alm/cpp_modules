@@ -24,7 +24,8 @@ Array<T>::Array( const Array& copy ) {
 
 template<class T>
 Array<T>& Array<T>::operator=( const Array& copy ) {
-	delete []_array;
+	if (_array)
+		delete []_array;
 	_arrayLength = copy._arrayLength;
 	_array = new T[copy._arrayLength];
 	for (unsigned long i = 0; i < _arrayLength ; i++)
@@ -44,9 +45,8 @@ const char* Array<T>::OutOfBounds::what() const throw() {
 
 template<class T>
 T& Array<T>::operator[]( unsigned int value ) {
-	if (value > this->arraysize()) {
+	if (value >= this->arraysize()) {
 		throw OutOfBounds();
-		delete []_array;
 	}
 	return _array[value];
 }
@@ -55,5 +55,7 @@ template<class T>
 unsigned int Array<T>::arraysize( void ) {
 	return this->_arrayLength;
 }
+
+#include "Array.hpp"
 
 #endif
