@@ -7,30 +7,30 @@ int main(int, char**)
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
-	try {
-		for (int i = 0; i < 755; i++)
-		{
-			const int value = rand();
-			numbers[i] = value;
-			mirror[i] = value;
-			std::cout << "NUMBERS: " << numbers[i] << "\nMIRRORS: " << mirror[i] << std::endl;
-		}
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+    try {
+     for (int i = 0; i < MAX_VAL + 2; i++)
+    {
+        const int value = rand();
+        numbers[i]   = value;
+        mirror[i] = value;
+        std::cout << "NUMBERS: " << numbers[i] << std::endl << " MIRROR: " << mirror[i] << std::endl;
+    }
+    }
+    catch (std::exception &e ) {
+        std::cerr << e.what() << std::endl;
+    }
+    //SCOPE
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
     }
-	mirror[5] = 2;
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
-			delete []mirror;
-			return 1;
+            return 1;
         }
     }
     try
