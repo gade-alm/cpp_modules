@@ -58,17 +58,13 @@ int		Span::longestSpan( void ) {
 
 void	Span::showNumbers( void ) {
 	for (unsigned int i = 0; i < array.size(); i++)
-		std::cout << array[i] << std::endl;
+		std::cout << array[i] << ", ";
+	std::cout << std::endl;
 
 }
 
-void	Span::addRange( unsigned int quantity ) {
-	if (quantity > N)
-		throw std::out_of_range("Quantity above N");
-	else
-		for (unsigned int i = 0;i < quantity; i++) {
-			array.push_back(i);
-		}
+void	Span::addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end ) {	
+	array.insert(array.end(), begin, end);
 }
 
 int		Span::arraySize( void ) {

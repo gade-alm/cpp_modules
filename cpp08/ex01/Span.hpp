@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <climits>
+#include <ctime>
 
 class Span{ 
 	private:
@@ -23,7 +24,7 @@ class Span{
 		int		shortestSpan( void );
 		int		longestSpan( void );
 		void	showNumbers( void );
-		void	addRange( unsigned int quantity );
+		void	addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end );
 		int		arraySize( void );
 };
 
