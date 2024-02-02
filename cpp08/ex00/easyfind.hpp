@@ -9,7 +9,7 @@
 
 
 template<typename T>
-int	easyfind(T& parameter, const int& value) {
+int	easyfind(T& parameter, int value) {
 
 	std::vector<int>::iterator it;
 

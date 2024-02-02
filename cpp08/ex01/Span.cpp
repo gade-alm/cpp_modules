@@ -63,7 +63,9 @@ void	Span::showNumbers( void ) {
 
 }
 
-void	Span::addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end ) {	
+void	Span::addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end, size_t vectorSize ) {	
+	if (vectorSize > N)
+		throw std::out_of_range("Vector larger than Span size");
 	array.insert(array.end(), begin, end);
 }
 

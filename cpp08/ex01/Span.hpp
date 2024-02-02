@@ -24,7 +24,7 @@ class Span{
 		int		shortestSpan( void );
 		int		longestSpan( void );
 		void	showNumbers( void );
-		void	addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end );
+		void	addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end, size_t vectorSize );
 		int		arraySize( void );
 };
 

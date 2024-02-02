@@ -31,6 +31,7 @@ MutantStack<T>::MutantStack( const MutantStack& copy ) {
 
 template<typename T>
 MutantStack<T>& MutantStack<T>::operator=( const MutantStack& copy ){
+	(void)copy;
 }
 
 template<typename T>
