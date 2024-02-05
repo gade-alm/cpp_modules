@@ -19,8 +19,8 @@ int main( void ) {
 	}
 	{
 		try {
-			std::vector<int> values(29);
-			Span sp2 = Span(30);
+			std::vector<int> values(30);
+			Span sp2 = Span(29);
 
 			std::srand(std::time(NULL));
 			std::generate(values.begin(), values.end(), std::rand);

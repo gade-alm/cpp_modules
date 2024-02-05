@@ -18,9 +18,8 @@ int	easyfind(T& parameter, int value) {
 		std::cout << "Value found" << std::endl;
 		return 1;
 	}
-	else
-		std::cout << "Could not find the value on the list" << std::endl;
+	std::cout << "Could not find the value on the list" << std::endl;
 	return 0;
 }
 
-#endif
+#endif	

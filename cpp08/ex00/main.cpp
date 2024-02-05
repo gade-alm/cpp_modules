@@ -9,5 +9,5 @@ int main( void ) {
 	values.push_back(4);
 
 	easyfind(values, 4);
-	easyfind(values, -4);
+	easyfind(values, 0);
 }
