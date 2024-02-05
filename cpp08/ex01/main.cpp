@@ -6,10 +6,10 @@ int main( void ) {
 		try{
 			Span sp = Span(10);
 			
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 1; i++)
 				sp.addNumber(i);
 			std::cout << sp.arraySize() << std::endl;
-			// sp.showNumbers();
+			sp.showNumbers();
 			std::cout << "Shortest difference: " << sp.shortestSpan() << std::endl;
 			std::cout << "Longest difference: " << sp.longestSpan() << std::endl;
 		}

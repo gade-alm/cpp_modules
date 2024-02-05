@@ -25,7 +25,7 @@ void	Span::addNumber( int number ) {
 	if (array.size() < N) 
 		array.push_back(number);
 	else
-		throw std::out_of_range("Out of bounds");
+		throw (std::out_of_range("Out of bounds"));
 }
 
 int		Span::shortestSpan( void ) {

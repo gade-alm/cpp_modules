@@ -4,22 +4,23 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <climits>
-#include <stdexcept>
+#include <deque>
+#include <list>
 
 
 template<typename T>
-int	easyfind(T& parameter, int value) {
+int	easyfind(T parameter, int value) {
 
-	std::vector<int>::iterator it;
+	typename T::iterator it;
 
 	it = std::find(parameter.begin(),parameter.end(), value);
 	if (it != parameter.end()) {
 		std::cout << "Value found" << std::endl;
 		return 1;
 	}
-	std::cout << "Could not find the value on the list" << std::endl;
+	else
+		std::cout << "Could not find the value on the list" << std::endl;
 	return 0;
 }
 
-#endif	
+#endif
