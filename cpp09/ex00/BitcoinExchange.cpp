@@ -21,50 +21,46 @@ void	openDatabase( char* baseName ) {
 void	makeConversion ( std::ifstream & input, std::ifstream & database ) {
 
 	std::string checker;
+	bool	firstLine = 0;
 	(void)database;
 
 	while (getline(input, checker)){
+		if (firstLine == 0 && (!checker.compare("date | value"))) {
+			firstLine = 1;
+			continue ;
+		}
 		checkDate(checker);	
 	}
 }
 
-static bool	checkPattern(std::string &str) {
+static bool	checkPattern(const char *str) {
 
-	for (int i = 0; str[i]; i++) {
-		if (i < 4 && !isdigit(str[i]))
-			return 1;
-		if (str[5] != '-')
-			return 1;
-	}
+	struct tm time;
+
+	if (!strptime(str, "%Y-%m-%d", &time))
+		return 1;
 	return 0;
 }
 
 std::string	checkDate( std::string checker ) {
 
-	// const char* date = checker.c_str();
-	// int			i = 0;
 	int			year;
 	int			month;
 	int			day;
 
-	if (checkPattern(checker))
-		std::cout << "Verify date input, wrong size" << std::endl;
+	if (checkPattern(checker.c_str()))
+		std::cout << "Verify date input" << std::endl;
 	year = atoi(checker.substr(0, checker.find('-')).c_str());
 	if (year < 2009 || year > 2024) {
-		return "Wrong year input";
+		std::cout << "Wrong year input, out of range"; 
+		return "Wrong year input, out of range";
 	}
 	month = atoi(checker.substr(checker.find('-') + 1, checker.find('-')).c_str());
-	if (month < 1 || month > 12) {
-		std::cout << "Wrong month input" << std::endl;
-		return "Wrong month input";
-	}
 	day = atoi(checker.substr(checker.find('|') - 3).c_str());
-	if (day < 1 || day > 31) {
-		std::cout << "Wrong day input" << std::endl;
-		return "Wrong day input";
-	}
-	if (!verifyDate(year, month, day))
+	if (!verifyDate(year, month, day)) {
 		std::cout << "Wrong date values" << std::endl;
+		return "Wrong date values";
+	}
 	std::cout << "this one is correct: " << checker << std::endl;
 	return "";
 }
