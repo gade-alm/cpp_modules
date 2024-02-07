@@ -18,19 +18,67 @@ void	openDatabase( char* baseName ) {
 	makeConversion( input, database );
 }
 
+static bool checkValue ( std::string checker ) {
+
+	float	check = 0;
+	for (size_t i = 0; i < checker.size(); i++) {
+		if (checker[i] == '|'){
+			check = atof(checker.substr(checker.find_last_of('|') + 1).c_str());
+			if (check < 0 || check > 1000)
+				return 1;
+		}
+	}
+	return 0;
+}
+
 void	makeConversion ( std::ifstream & input, std::ifstream & database ) {
 
-	std::string checker;
-	bool	firstLine = 0;
-	(void)database;
+	std::string 					checker;
+	bool							firstLine = 0;
+	std::string						databaseValues;
+	std::map<std::string, float>	dataMap;
 
+	while (std::getline(database, databaseValues))
+		dataMap[databaseValues.substr(0, databaseValues.find(',')).c_str()] = atof(databaseValues.substr(databaseValues.find_last_of(',') + 1).c_str());
 	while (getline(input, checker)){
 		if (firstLine == 0 && (!checker.compare("date | value"))) {
 			firstLine = 1;
 			continue ;
 		}
-		checkDate(checker);	
+		if (checker[11] != '|') {
+			std::cout << "Missing | " << std::endl;
+			continue ;
+		}
+		if (checkValue(checker)) {
+			std::cout << "Wrong value input, can't convert" << std::endl;
+			continue ;
+		}
+		if (checkDate(checker) == "")
+			printConversion ( checker, dataMap );
+		else
+			std::cout << checkDate(checker) << std::endl;;
+
 	}
+}
+
+static float		getValue ( std::string checker ) {
+	return (atof(checker.substr(checker.find_last_of('|') + 1).c_str()));
+}
+
+void	printConversion( std::string checker, std::map<std::string, float>dataMap ){
+
+	std::map<std::string, float>::iterator	dataite;
+	std::map<std::string, float>::iterator lastValue;
+	std::string								databaseValues;
+
+	for (dataite = dataMap.begin(); dataite != dataMap.end(); dataite++) {
+		if (dataite->first == checker.substr(0, checker.find('|') - 1)) 
+			return (void)(std::cout << dataite->first << " => " << getValue(checker) * dataite->second << std::endl);
+		if (dataite->first > checker.substr(0, checker.find('|') - 1)) 
+			return (void)(std::cout << lastValue->first << " => " << getValue(checker) * lastValue->second << std::endl);
+		lastValue = dataite;
+		}
+	return ;
 }
 
 static bool	checkPattern(const char *str) {
@@ -48,20 +96,15 @@ std::string	checkDate( std::string checker ) {
 	int			month;
 	int			day;
 
-	if (checkPattern(checker.c_str()))
-		std::cout << "Verify date input" << std::endl;
+	if (checkPattern(checker.c_str())) 
+		return "Verify date input";
 	year = atoi(checker.substr(0, checker.find('-')).c_str());
-	if (year < 2009 || year > 2024) {
-		std::cout << "Wrong year input, out of range"; 
+	if (year < 2009 || year > 2024) 
 		return "Wrong year input, out of range";
-	}
 	month = atoi(checker.substr(checker.find('-') + 1, checker.find('-')).c_str());
 	day = atoi(checker.substr(checker.find('|') - 3).c_str());
-	if (!verifyDate(year, month, day)) {
-		std::cout << "Wrong date values" << std::endl;
+	if (!verifyDate(year, month, day)) 
 		return "Wrong date values";
-	}
-	std::cout << "this one is correct: " << checker << std::endl;
 	return "";
 }
 
@@ -109,21 +152,4 @@ bool	verifyDate( int year, int month, int day ) {
 	return 0;
 }
 
-// void	checkDate( std::string date ) {
 
-// 	long long	year = 0;
-// 	long long	month = 0;
-// 	long long	day = 0;
-
-// 	std::string data = date.substr( 0, date.find('|') );
-// 	if (data.size() < 8)
-// 		throw std::out_of_range("Data in wrong pattern");
-// 	year = atoll(date.substr(0, date.find('-')).c_str());
-// 	if (year < 2010)
-// 		throw std::out_of_range("The year is too low, check your input");
-// 	month = atoll(date.substr(date.find('-') + 1, '-').c_str());
-// 	day = atoll(date.substr(date.find_last_of('-') + 1).c_str());
-// 	if (!verifyDate( year, month, day ))
-// 		throw std::out_of_range("Wrong date input");
-// 	return ;
-// }

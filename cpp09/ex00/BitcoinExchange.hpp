@@ -26,5 +26,6 @@ void		openDatabase( char* baseName );
 void		makeConversion ( std::ifstream & input, std::ifstream & database );
 std::string	checkDate( std::string checker );
 bool		verifyDate( int year, int month, int day );
+void		printConversion( std::string checker, std::map<std::string, float>dataMap );
 
 #endif
