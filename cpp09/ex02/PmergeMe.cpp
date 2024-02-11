@@ -12,26 +12,14 @@ void print(std::vector<int> &vec){
 	std::cout << std::endl;
 }
 
-void	checkValues( char** string ) {
+void printPair(std::vector<std::pair<int, int> > &vec){
 
-	for (size_t i = 1; string[i]; i++) {
-		for (size_t j = 0; string[i][j]; j++)
-			if ((!isdigit(string[i][j])) && string[i][j] != ' ')
-				throw std::out_of_range("Wrong input values");
+	std::vector<std::pair<int, int> >::iterator itv = vec.begin();
+
+	for(; itv != vec.end(); itv++){
+		std::cout << "a: " << itv->first << " b: " << itv->second << " ";
+		std::cout << std::endl;
 	}
-	return ;
-}
-
-void	pushVectorsNumbers( std::vector<int> &vectors, char** av) {
-	int temp = 0;
-
-	for (size_t i = 1; av[i]; i++) {
-		temp = atoi(av[i]);
-		if (temp < 0 || temp > 2147483647)
-			throw std::out_of_range("Int overflow or less than 0");
-		vectors.push_back(temp);
-	}
-	return ;
 }
 
 void	checkDuplicates( char **string ) {
@@ -47,43 +35,94 @@ void	checkDuplicates( char **string ) {
 	}
 }
 
-void	mergeNumbersVector( std::vector<int> &vectors ) {
+void	checkValues( char** string ) {
 
-	if (vectors.size() <= 3) {
-		insertionNumbersVector(vectors);
-		return ;
+	for (size_t i = 1; string[i]; i++) {
+		for (size_t j = 0; string[i][j]; j++)
+			if ((!isdigit(string[i][j])) && string[i][j] != ' ')
+				throw std::out_of_range("Wrong input values");
 	}
-	int mid = vectors.size() / 2;
-	std::vector<int> leftSide(vectors.begin(), vectors.begin() + mid);
-	std::vector<int> rightSide(vectors.begin() + mid, vectors.end());
-
-	mergeNumbersVector(leftSide);
-	mergeNumbersVector(rightSide);
-
-	merge(leftSide.begin(),leftSide.end(), rightSide.begin(),rightSide.end(), vectors.begin());
+	return ;
 }
 
-void	insertionNumbersVector( std::vector<int> &vectors ) {
+void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,int> > &vectorsPair, char** av) {
 
-	std::vector<int>::iterator it =	vectors.begin();
-	std::vector<int>::iterator copy;
-	int								key = 0;
+	int	i = 1;
+	int	temp = 0;
 
-	for (; it != vectors.end() - 1; it++) {
-		if (*it > *(it + 1)) {
-			key = *it;
-			*it = *(it + 1);
-			*(it +1) = key;
-		}
+	for (; av[i]; i++) {
+		temp = atoi(av[i]);
+		if (temp < 0 || temp > 2147483647)
+			throw std::out_of_range("Number negative or overflow");
+		vectors.push_back(temp);
 	}
-}
-
-// void	mergeNumbersList( std::list<int> &lists ) {
+	if (vectors.size() % 2 != 0) {
+		temp = vectors.back();
+		vectors.pop_back();
+	}
 	
-// 	if (lists.size() < 2)
-// 		return ;
-// 	int mid = lists.size() / 2;
+	//Create vector pairs after checking if the size is even
+	std::vector<int>::iterator	it = vectors.begin();
+	for (; it != vectors.end(); it += 2) {
+		vectorsPair.push_back(std::pair<int, int>(*it, *(it + 1)));
+	}
+	printPair(vectorsPair);
 
-// 	std::list<int> leftSide(lists.begin(), lists.begin());
-// 	std::list<int> rightSide(lists.begin(), lists.end());
-// }
+	//Swaping values to make the bigger value stay first
+	std::vector<std::pair<int, int> >::iterator itPair = vectorsPair.begin();
+	for (; itPair != vectorsPair.end(); itPair++) {
+		if (itPair->second > itPair->first)
+			std::swap(itPair->second, itPair->first);
+	}
+	printPair(vectorsPair);
+	return ;
+}
+
+void	recursiveSort( std::vector<std::pair<int, int> > &vectorPairs, int size ) {
+	if (size < 1)
+		return ;
+	static bool checker = 0;
+	std::cout << size << std::endl;
+	std::vector<std::pair<int, int> >::iterator itPair = vectorPairs.begin();
+
+
+	if (itPair[size - 1].first > (itPair)[size].first) {
+		std::swap(itPair[size - 1], itPair[size]);
+	}
+	if (size == 1 && checker == 0) {
+		checker = 1;
+		recursiveSort(vectorPairs, vectorPairs.size() - 1);
+	}
+	else if (checker == 1)
+		return ;
+	recursiveSort( vectorPairs, size - 1);
+}
+
+//<-------------------------------------------DEQUES PART------------------------------------------->
+
+void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> > &dequesPair, char** av ){
+
+	int i = 0;
+	int temp = 0;
+
+	for (; av[i]; i++) {
+		temp = atoi(av[i]);
+		if (temp < 0 || temp > 2147483647)
+			throw std::out_of_range("Number negative or overflow");
+		deques.push_back(temp);
+	}
+	if (deques.size() % 2 != 0) {
+		temp = deques.back();
+		deques.pop_back();
+	}
+	std::deque<int>::iterator	it = deques.begin();
+	for (; it != deques.end(); it += 2) {
+		dequesPair.push_back(std::pair<int, int>(*it, *(it + 1)));
+	}
+
+	std::deque<std::pair<int, int> >::iterator itPair = dequesPair.begin();
+	for (; itPair != dequesPair.end(); itPair++) {
+		if (itPair->second > itPair->first)
+			std::swap(itPair->second, itPair->first);
+	}
+}

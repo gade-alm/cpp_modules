@@ -10,18 +10,20 @@ int main ( int ac, char **av ) {
 		checkValues(av);
 		checkDuplicates(av);
 
-		const std::clock_t v_start = std::clock();
-		std::vector<int> vectors;
-		pushVectorsNumbers(vectors, av);
+		std::vector<std::pair<int, int> >	vectorsPair;
+		std::deque<std::pair<int, int> >	dequesPairs;
+		std::vector<int>					vectors;
+		std::deque<int>						deques;
 
-		std::cout << "Before: ";
-		print(vectors);
-		mergeNumbersVector(vectors);
-		std::cout << "After: ";
-		print(vectors);
-		const std::clock_t v_end = std::clock();
-		std::cout << std::fixed << std::setprecision(4) << "Time to process a range of " << vectors.size() << " elements with std::vector: " << static_cast<double>((v_end - v_start))/ CLOCKS_PER_SEC << "us" << std::endl;
+		//Insert values on vectorPairs and sort them to stay larger value first in each pair (steps 1 and 2 in wikipedia)
+		pushVectorsNumbers(vectors, vectorsPair, av);
+		//Recursively sort the values in the vector pairs
+		recursiveSort( vectorsPair, vectorsPair.size() - 1);
+		std::cout << "TESTE PAIRS" << std::endl;
+		printPair(vectorsPair);
 
+		//Deques part
+		pushDequeNumbers( deques, dequesPairs, av );
 	}
 	catch ( std::exception &e ){
 		std::cerr << e.what() << std::endl;
