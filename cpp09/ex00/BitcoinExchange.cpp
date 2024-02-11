@@ -41,7 +41,9 @@ void	makeConversion ( std::ifstream & input, std::ifstream & database ) {
 	while (std::getline(database, databaseValues))
 		dataMap[databaseValues.substr(0, databaseValues.find(',')).c_str()] = atof(databaseValues.substr(databaseValues.find_last_of(',') + 1).c_str());
 	while (getline(input, checker)){
-		if (firstLine == 0 && (!checker.compare("date | value"))) {
+		if (firstLine == 0) {
+			if (checker.compare("date | value"))
+				throw std::runtime_error("Date | value missing or wrong");
 			firstLine = 1;
 			continue ;
 		}

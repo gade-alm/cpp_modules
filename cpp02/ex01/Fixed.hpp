@@ -10,10 +10,10 @@ class Fixed{
 		int					_fixed;
 		static const int	_bits = 8;
 	public:
-		Fixed( void );
-		Fixed( const Fixed& copy );
-		Fixed& operator=( const Fixed& copy );
-		~Fixed( void );
+		Fixed( void ); //constructor
+		Fixed( const Fixed& copy ); //copy constructor
+		Fixed& operator=( const Fixed& copy ); //operator overload copy
+		~Fixed( void ); //destructor
 
 		Fixed( const int& value );
 		Fixed( const float& value );
