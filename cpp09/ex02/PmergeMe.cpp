@@ -47,8 +47,11 @@ void	checkValues( char** string ) {
 
 void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,int> > &vectorsPair, char** av) {
 
-	int	i = 1;
-	int	temp = 0;
+	int		i = 1;
+	int		temp = 0;
+	bool	odd;
+
+	std::vector<int> bigChain;
 
 	for (; av[i]; i++) {
 		temp = atoi(av[i]);
@@ -59,6 +62,7 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 	if (vectors.size() % 2 != 0) {
 		temp = vectors.back();
 		vectors.pop_back();
+		odd = 1;
 	}
 	
 	//Create vector pairs after checking if the size is even
@@ -66,8 +70,8 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 	for (; it != vectors.end(); it += 2) {
 		vectorsPair.push_back(std::pair<int, int>(*it, *(it + 1)));
 	}
-	std::cout << "<----------VALUES ON VECTOR PAIRS---------->" << std::endl;
-	printPair(vectorsPair);
+	// std::cout << "<----------VALUES ON VECTOR PAIRS---------->" << std::endl;
+	// printPair(vectorsPair);
 
 	//Swaping values to make the bigger value stay first
 	std::vector<std::pair<int, int> >::iterator itPair = vectorsPair.begin();
@@ -77,40 +81,62 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 	}
 	std::cout << "<----------VECTOR PAIRS SORTED BY HIGHEST FIRST--------->" << std::endl;
 	printPair(vectorsPair);
-	recursiveSort( vectorsPair, vectorsPair.size() - 1);
-	insertionVectorsSort( vectorsPair );
+	recursiveSort( vectorsPair, 0 );
+	bigChain = mainChain( vectorsPair );
+	if (odd)
+		bigChain.push_back(temp);
+	std::cout << "BIG CHAIN PRINTING" << std::endl;
+	print(bigChain);
 	return ;
 }
 
-void	recursiveSort( std::vector<std::pair<int, int> > &vectorPairs, int size ) {
-	if (size < 1)
+void	recursiveSort( std::vector<std::pair<int, int> > &vectorPairs, size_t size ) {
+	if (size == vectorPairs.size())
 		return ;
-	int tempSize = size;
-	static bool checker = 0;
-	std::vector<std::pair<int, int> >::iterator itPair = vectorPairs.begin();
-
-	for (; size > 0; size--) {
-		if (itPair[size - 1].first > (itPair)[size].first) {
-			std::swap(itPair[size - 1], itPair[size]);
+	
+	for (size_t i = 0; i < vectorPairs.size() - 1; i++) {
+		if (vectorPairs[i].first > vectorPairs[size].first) {
+			std::swap(vectorPairs[i], vectorPairs[size]);
 		}
 	}
-	if (tempSize == 1 && checker == 0) {
-		tempSize = vectorPairs.size();
-		checker = 1;
-	}
-	recursiveSort( vectorPairs, tempSize - 1);
+	recursiveSort( vectorPairs, ++size );
 }
 
-// std::vector<int> &insertionVectorsSort( std::vector<std::pair<int, int> > &vectorPairs){
-// 	std::vector<int> mainChain;
+std::vector<int> mainChain( std::vector<std::pair<int, int> > &vectorPairs ) {
+	
+	std::vector<int> mainVector;
+	std::vector<std::pair<int, int> >::iterator itp = vectorPairs.begin();
 
-// 	mainChain.push_back(vectorPairs[0].second);
-// 	std::vector<std::pair<int, int> >::iterator it = vectorPairs.begin();
-// 	for(; it != vectorPairs.end(); it++)
-// 		mainChain.push_back(vectorPairs[0].first);
-// 	(void)vectorPairs;
-// }
+	mainVector.push_back(itp->second);
+	for (; itp != vectorPairs.end(); itp++) {
+		mainVector.push_back(itp->first);
+	}
+	return mainVector;
+}
 
+/* void	insertionVectorsSort( std::vector<std::pair<int, int> > &vectorPairs, std::vector<int> &vectors ){
+	long jacobsthal[] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 
+	1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, 699051, 
+	1398101, 2796203, 5592405, 11184811, 22369621, 44739243, 89478485, 
+	178956971, 357913941, 715827883, 1431655765, 2863311531, 5726623061, 11453246123};
+
+	std::vector<int> testing;
+	int		temp = 0;
+	if (vectors.size() % 2 != 0) {
+		temp = vectors.back();
+		vectors.pop_back();
+	}
+
+	int i = 0;
+	while (jacobsthal[i] < vectorPairs.size() - 1)
+	for (size_t i = 0; jacobsthal[i] && i < vectorPairs.size(); i++) {
+		testing.push_back(jacobsthal[i]);
+	}
+	std::vector<int>::iterator test = testing.begin();
+	for (; test != testing.end(); test++)
+		std::cout << *test << std::endl;
+}
+ */
 //<-------------------------------------------DEQUES PART------------------------------------------->
 
 void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> > &dequesPair, char** av ){
