@@ -15,11 +15,9 @@ int main ( int ac, char **av ) {
 		std::vector<int>					vectors;
 		std::deque<int>						deques;
 
-		//Insert values on vectorPairs and sort them to stay larger value first in each pair (steps 1 and 2 in wikipedia)
 		pushVectorsNumbers(vectors, vectorsPair, av);
-		//Recursively sort the values in the vector pairs
-		recursiveSort( vectorsPair, vectorsPair.size() - 1);
-		std::cout << "TESTE PAIRS" << std::endl;
+		// insertionVectorsSort( vectorsPair );
+		std::cout << "<--------TESTE PAIRS SORTED WITH RECURSION-------->" << std::endl;
 		printPair(vectorsPair);
 
 		//Deques part

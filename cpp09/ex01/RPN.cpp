@@ -18,15 +18,19 @@ void	calcValue( char* dataEntry ) {
 
 	std::stack<int> values;
 	int			result = 0;
+	int			temp = 0;
 
 	for (size_t i = 0; i < strlen(dataEntry); i++) {
 		if (dataEntry[i] == ' ') {
 			continue;
 		}
-		if (isdigit(dataEntry[i]) && values.size() < 3) {
+		if (isdigit(dataEntry[i]) && values.size() < 2) {
+			temp = atoi(&dataEntry[i]);
+			if (temp < 0 || temp > 9)
+				throw std::out_of_range("Wrong input, please 0 to 9 numbers");
 			values.push(atoi(&dataEntry[i]));
 		}
-		if (isOperand(dataEntry[i]) && values.size() < 4){
+		if (isOperand(dataEntry[i]) && values.size() < 3){
 			result = resultOperation(values, dataEntry[i]);
 			values.push(result);
 			continue ;
