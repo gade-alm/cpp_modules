@@ -49,7 +49,7 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 
 	int		i = 1;
 	int		temp = 0;
-	bool	odd;
+	bool	odd = 0;
 
 	std::vector<int> bigChain;
 
@@ -70,8 +70,6 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 	for (; it != vectors.end(); it += 2) {
 		vectorsPair.push_back(std::pair<int, int>(*it, *(it + 1)));
 	}
-	// std::cout << "<----------VALUES ON VECTOR PAIRS---------->" << std::endl;
-	// printPair(vectorsPair);
 
 	//Swaping values to make the bigger value stay first
 	std::vector<std::pair<int, int> >::iterator itPair = vectorsPair.begin();
@@ -79,14 +77,25 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 		if (itPair->second > itPair->first)
 			std::swap(itPair->second, itPair->first);
 	}
-	std::cout << "<----------VECTOR PAIRS SORTED BY HIGHEST FIRST--------->" << std::endl;
-	printPair(vectorsPair);
+
 	recursiveSort( vectorsPair, 0 );
-	bigChain = mainChain( vectorsPair );
+	bigChain = mainChainVector( vectorsPair );
 	if (odd)
-		bigChain.push_back(temp);
-	std::cout << "BIG CHAIN PRINTING" << std::endl;
-	print(bigChain);
+		vectorsPair.push_back(std::pair<int, int>(0, temp));
+
+	std::vector<int>::iterator b_it;
+	std::vector<int> sequence = insertionVectorsSort( vectorsPair );
+	std::vector<int>::iterator s_it = sequence.begin();
+
+	for (; s_it != sequence.end(); s_it++) {
+		b_it = bigChain.begin();
+		while (*b_it < vectorsPair[*s_it - 1].second){
+			b_it++;
+		}
+		bigChain.insert(b_it, vectorsPair[*s_it - 1].second);
+		
+	}
+	// print(bigChain);
 	return ;
 }
 
@@ -102,7 +111,7 @@ void	recursiveSort( std::vector<std::pair<int, int> > &vectorPairs, size_t size 
 	recursiveSort( vectorPairs, ++size );
 }
 
-std::vector<int> mainChain( std::vector<std::pair<int, int> > &vectorPairs ) {
+std::vector<int> mainChainVector( std::vector<std::pair<int, int> > &vectorPairs ) {
 	
 	std::vector<int> mainVector;
 	std::vector<std::pair<int, int> >::iterator itp = vectorPairs.begin();
@@ -114,35 +123,42 @@ std::vector<int> mainChain( std::vector<std::pair<int, int> > &vectorPairs ) {
 	return mainVector;
 }
 
-/* void	insertionVectorsSort( std::vector<std::pair<int, int> > &vectorPairs, std::vector<int> &vectors ){
-	long jacobsthal[] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 
+std::vector<int>	insertionVectorsSort( std::vector<std::pair<int, int> > &vectorPairs ){
+	long jacobsthal[] = {1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 
 	1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, 699051, 
 	1398101, 2796203, 5592405, 11184811, 22369621, 44739243, 89478485, 
 	178956971, 357913941, 715827883, 1431655765, 2863311531, 5726623061, 11453246123};
 
-	std::vector<int> testing;
-	int		temp = 0;
-	if (vectors.size() % 2 != 0) {
-		temp = vectors.back();
-		vectors.pop_back();
-	}
+	int	checkerIndex = vectorPairs.size();
+	int	i = 0;
+	long temp = 0;
+	std::vector<int> sequence;
 
-	int i = 0;
-	while (jacobsthal[i] < vectorPairs.size() - 1)
-	for (size_t i = 0; jacobsthal[i] && i < vectorPairs.size(); i++) {
-		testing.push_back(jacobsthal[i]);
+	while (checkerIndex > jacobsthal[i])
+		i++;
+	if (i == 0)
+		return sequence;
+	for (int j = 0; j < i; j++) {
+		temp = jacobsthal[j + 1];
+		if (checkerIndex < temp)
+			temp = checkerIndex;
+		while (temp > jacobsthal[j]) {
+			sequence.push_back(temp);
+			temp--;
+		}
 	}
-	std::vector<int>::iterator test = testing.begin();
-	for (; test != testing.end(); test++)
-		std::cout << *test << std::endl;
+	return sequence;
 }
- */
+
 //<-------------------------------------------DEQUES PART------------------------------------------->
 
 void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> > &dequesPair, char** av ){
 
-	int i = 0;
-	int temp = 0;
+	int		i = 1;
+	int		temp = 0;
+	bool	odd = 0;
+
+	std::deque<int> bigChain;
 
 	for (; av[i]; i++) {
 		temp = atoi(av[i]);
@@ -153,15 +169,91 @@ void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> >
 	if (deques.size() % 2 != 0) {
 		temp = deques.back();
 		deques.pop_back();
+		odd = 1;
 	}
+	
+	//Create vector pairs after checking if the size is even
 	std::deque<int>::iterator	it = deques.begin();
 	for (; it != deques.end(); it += 2) {
 		dequesPair.push_back(std::pair<int, int>(*it, *(it + 1)));
 	}
 
+	//Swaping values to make the bigger value stay first
 	std::deque<std::pair<int, int> >::iterator itPair = dequesPair.begin();
 	for (; itPair != dequesPair.end(); itPair++) {
 		if (itPair->second > itPair->first)
 			std::swap(itPair->second, itPair->first);
 	}
+
+	recursiveSort( dequesPair, 0 );
+
+	bigChain = mainChainDeque( dequesPair );
+	if (odd)
+		dequesPair.push_back(std::pair<int, int>(0, temp));
+
+	std::deque<int>::iterator b_it;
+	std::deque<int> sequence = insertionDequesSort( dequesPair );
+	std::deque<int>::iterator s_it = sequence.begin();
+
+	for (; s_it != sequence.end(); s_it++) {
+		b_it = bigChain.begin();
+		while (*b_it < dequesPair[*s_it - 1].second){
+			b_it++;
+		}
+		bigChain.insert(b_it, dequesPair[*s_it - 1].second);
+		
+	}
+	return ;
+}
+
+void	recursiveSort( std::deque<std::pair<int, int> > &dequesPairs, size_t size ) {
+	if (size == dequesPairs.size())
+		return ;
+	
+	for (size_t i = 0; i < dequesPairs.size() - 1; i++) {
+		if (dequesPairs[i].first > dequesPairs[size].first) {
+			std::swap(dequesPairs[i], dequesPairs[size]);
+		}
+	}
+	recursiveSort( dequesPairs, ++size );
+}
+
+
+std::deque<int> mainChainDeque( std::deque<std::pair<int, int> > &dequesPairs ) {
+	
+	std::deque<int> maindeque;
+	std::deque<std::pair<int, int> >::iterator itp = dequesPairs.begin();
+
+	maindeque.push_back(itp->second);
+	for (; itp != dequesPairs.end(); itp++) {
+		maindeque.push_back(itp->first);
+	}
+	return maindeque;
+}
+
+std::deque<int>	insertionDequesSort( std::deque<std::pair<int, int> > &dequesPairs ){
+	long jacobsthal[] = {1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 
+	1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, 699051, 
+	1398101, 2796203, 5592405, 11184811, 22369621, 44739243, 89478485, 
+	178956971, 357913941, 715827883, 1431655765, 2863311531, 5726623061, 11453246123};
+
+	int	checkerIndex = dequesPairs.size();
+	int	i = 0;
+	long temp = 0;
+	std::deque<int> sequence;
+
+	while (checkerIndex > jacobsthal[i])
+		i++;
+	if (i == 0)
+		return sequence;
+	for (int j = 0; j < i; j++) {
+		temp = jacobsthal[j + 1];
+		if (checkerIndex < temp)
+			temp = checkerIndex;
+		while (temp > jacobsthal[j]) {
+			sequence.push_back(temp);
+			temp--;
+		}
+	}
+	return sequence;
 }
