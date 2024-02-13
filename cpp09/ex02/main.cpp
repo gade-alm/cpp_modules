@@ -19,7 +19,7 @@ int main ( int ac, char **av ) {
 		// std::cout << "<--------TESTE PAIRS SORTED WITH RECURSION-------->" << std::endl;
 		// printPair(vectorsPair);
 		//Deques part
-		pushDequeNumbers(deques, dequesPairs, av);
+		// pushDequeNumbers(deques, dequesPairs, av);
 	}
 	catch ( std::exception &e ){
 		std::cerr << e.what() << std::endl;

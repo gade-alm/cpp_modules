@@ -5,8 +5,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <deque>
+#include <algorithm>
 #include <ctime>
 #include <cmath>
 #include <iomanip>

@@ -81,7 +81,7 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 	recursiveSort( vectorsPair, 0 );
 	bigChain = mainChainVector( vectorsPair );
 	if (odd)
-		vectorsPair.push_back(std::pair<int, int>(0, temp));
+		vectorsPair.push_back(std::pair<int, int>(temp, temp));
 
 	std::vector<int>::iterator b_it;
 	std::vector<int> sequence = insertionVectorsSort( vectorsPair );
@@ -95,7 +95,7 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 		bigChain.insert(b_it, vectorsPair[*s_it - 1].second);
 		
 	}
-	// print(bigChain);
+	print(bigChain);
 	return ;
 }
 
@@ -140,10 +140,11 @@ std::vector<int>	insertionVectorsSort( std::vector<std::pair<int, int> > &vector
 		return sequence;
 	for (int j = 0; j < i; j++) {
 		temp = jacobsthal[j + 1];
-		if (checkerIndex < temp)
+		if (temp > checkerIndex)
 			temp = checkerIndex;
 		while (temp > jacobsthal[j]) {
 			sequence.push_back(temp);
+			std::cout << temp << std::endl;
 			temp--;
 		}
 	}
@@ -189,7 +190,7 @@ void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> >
 
 	bigChain = mainChainDeque( dequesPair );
 	if (odd)
-		dequesPair.push_back(std::pair<int, int>(0, temp));
+		dequesPair.push_back(std::pair<int, int>(temp, temp));
 
 	std::deque<int>::iterator b_it;
 	std::deque<int> sequence = insertionDequesSort( dequesPair );
@@ -197,7 +198,7 @@ void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> >
 
 	for (; s_it != sequence.end(); s_it++) {
 		b_it = bigChain.begin();
-		while (*b_it < dequesPair[*s_it - 1].second){
+		while (*b_it < dequesPair[*s_it].second){
 			b_it++;
 		}
 		bigChain.insert(b_it, dequesPair[*s_it - 1].second);
