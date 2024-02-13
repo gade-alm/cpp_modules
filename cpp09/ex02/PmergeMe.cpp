@@ -80,8 +80,9 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 
 	recursiveSort( vectorsPair, 0 );
 	bigChain = mainChainVector( vectorsPair );
-	if (odd)
-		vectorsPair.push_back(std::pair<int, int>(temp, temp));
+	if (odd) {
+		vectorsPair.push_back(std::pair<int, int>(0, temp));
+	}
 
 	std::vector<int>::iterator b_it;
 	std::vector<int> sequence = insertionVectorsSort( vectorsPair );
@@ -93,8 +94,8 @@ void	pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int,in
 			b_it++;
 		}
 		bigChain.insert(b_it, vectorsPair[*s_it - 1].second);
-		
 	}
+	std::cout << "After: ";
 	print(bigChain);
 	return ;
 }
@@ -116,7 +117,6 @@ std::vector<int> mainChainVector( std::vector<std::pair<int, int> > &vectorPairs
 	std::vector<int> mainVector;
 	std::vector<std::pair<int, int> >::iterator itp = vectorPairs.begin();
 
-	mainVector.push_back(itp->second);
 	for (; itp != vectorPairs.end(); itp++) {
 		mainVector.push_back(itp->first);
 	}
@@ -144,7 +144,6 @@ std::vector<int>	insertionVectorsSort( std::vector<std::pair<int, int> > &vector
 			temp = checkerIndex;
 		while (temp > jacobsthal[j]) {
 			sequence.push_back(temp);
-			std::cout << temp << std::endl;
 			temp--;
 		}
 	}
