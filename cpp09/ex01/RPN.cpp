@@ -24,13 +24,14 @@ void	calcValue( char* dataEntry ) {
 		if (dataEntry[i] == ' ') {
 			continue;
 		}
-		if (isdigit(dataEntry[i]) && values.size() < 2) {
+		if (isdigit(dataEntry[i])) {
 			temp = atoi(&dataEntry[i]);
 			if (temp < 0 || temp > 9)
 				throw std::out_of_range("Wrong input, please 0 to 9 numbers");
 			values.push(atoi(&dataEntry[i]));
+			result = temp;
 		}
-		if (isOperand(dataEntry[i]) && values.size() < 3){
+		if (isOperand(dataEntry[i])){
 			result = resultOperation(values, dataEntry[i]);
 			values.push(result);
 			continue ;
@@ -43,14 +44,14 @@ void	calcValue( char* dataEntry ) {
 
 int		resultOperation ( std::stack<int> &values, char operand ) {
 
-	if (values.size() != 2 && values.size() != 3)
-		throw std::runtime_error("Wrong operation");
+	if (values.size() < 2)
+		throw std::runtime_error("Missing Numbers");
 	
 	int	num1 = values.top();
-	std::cout << "NUM1: " << num1 << std::endl;
+	// std::cout << "NUM1: " << num1 << std::endl;
 	values.pop();
 	int	num2 = values.top();
-	std::cout << "NUM2: " << num2 << std::endl;
+	// std::cout << "NUM2: " << num2 << std::endl;
 	values.pop();
 
 	int result = 0;
@@ -69,6 +70,6 @@ int		resultOperation ( std::stack<int> &values, char operand ) {
 			result = num2 * num1;
 			break;
 	}
-	std::cout << "RESULT: " << result << std::endl << std::endl;
+	// std::cout << "RESULT: " << result << std::endl << std::endl;
 	return result;
 }
