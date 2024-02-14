@@ -64,6 +64,8 @@ int		resultOperation ( std::stack<int> &values, char operand ) {
 			result = num2 - num1;
 			break ;
 		case '/':
+			if (num1 == 0 || num2 == 0)
+				throw std::out_of_range("No divisions with 0, please, we are not wolfram calculator");
 			result = num2 / num1;
 			break;
 		case '*':
