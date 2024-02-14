@@ -25,7 +25,7 @@ int main ( int ac, char **av ) {
 		v_init = clock();
 		pushVectorsNumbers(vectors, vectorsPair, av);
 		v_end = clock() - v_init;
-		std::cout << "Time to process a range of " << i << " elements with std::vector " << ((float)v_end)/CLOCKS_PER_SEC << " us" << std::endl;
+		std::cout << "Time to process a range of " << i << " elements with std::vector " << (((float)v_end)/CLOCKS_PER_SEC) * 10 << " us" << std::endl;
 		// std::cout << "<--------TESTE PAIRS SORTED WITH RECURSION-------->" << std::endl;
 		//Deques part
 		clock_t d_init;
@@ -33,7 +33,7 @@ int main ( int ac, char **av ) {
 		d_init = clock();
 		pushDequeNumbers(deques, dequesPairs, av);
 		d_end = clock() - d_init;
-		std::cout << "Time to process a range of " << i << " elements with std::deque " << ((float)d_end)/CLOCKS_PER_SEC << " us" << std::endl;
+		std::cout << "Time to process a range of " << i << " elements with std::deque " << (((float)d_end)/CLOCKS_PER_SEC) * 10 << " us" << std::endl;
 	}
 	catch ( std::exception &e ){
 		std::cerr << e.what() << std::endl;
