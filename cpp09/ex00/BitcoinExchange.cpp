@@ -43,16 +43,16 @@ void	makeConversion ( std::ifstream & input, std::ifstream & database ) {
 	while (getline(input, checker)){
 		if (firstLine == 0) {
 			if (checker.compare("date | value"))
-				throw std::runtime_error("Date | value missing or wrong");
+				std::cout << "Date | value missing or wrong -> " << checker << std::endl;
 			firstLine = 1;
 			continue ;
 		}
 		if (checker[11] != '|') {
-			std::cout << "Missing | " << std::endl;
+			std::cout << "Missing or wrongly put | -> " << checker << std::endl;
 			continue ;
 		}
 		if (checkValue(checker)) {
-			std::cout << "Wrong value input, can't convert" << std::endl;
+			std::cout << "Wrong value input, can't convert -> " << checker << std::endl;
 			continue ;
 		}
 		if (checkDate(checker) == "")
@@ -99,14 +99,14 @@ std::string	checkDate( std::string checker ) {
 	int			day;
 
 	if (checkPattern(checker.c_str())) 
-		return "Verify date input";
+		return "Verify date input -> " + checker;
 	year = atoi(checker.substr(0, checker.find('-')).c_str());
 	if (year < 2009 || year > 2024) 
-		return "Wrong year input, out of range";
+		return "Wrong year input, out of range -> " + checker;
 	month = atoi(checker.substr(checker.find('-') + 1, checker.find('-')).c_str());
 	day = atoi(checker.substr(checker.find('|') - 3).c_str());
 	if (!verifyDate(year, month, day)) 
-		return "Wrong date values";
+		return "Wrong date values -> " + checker;
 	return "";
 }
 
