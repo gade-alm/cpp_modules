@@ -24,6 +24,8 @@ void	calcValue( char* dataEntry ) {
 		if (dataEntry[i] == ' ') {
 			continue;
 		}
+		if (dataEntry[i + 1] && dataEntry[i + 1] != ' ' && isdigit(dataEntry[i]))
+			throw std::out_of_range("Missing spaces between numbers");
 		if (isdigit(dataEntry[i])) {
 			temp = atoi(&dataEntry[i]);
 			if (temp < 0 || temp > 9)
