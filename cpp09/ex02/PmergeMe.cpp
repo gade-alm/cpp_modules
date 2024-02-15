@@ -2,6 +2,17 @@
 
 //`shuf -i 1-100000 -n 30000 | tr "\n" " " `
 
+int	isSorted( char **av ) {
+	int i = 1;
+
+	for (; av[i + 1]; i++) {
+		if (std::atoi(av[i]) > std::atoi(av[i + 1]))
+			return 0;
+	}
+	std::cout << "Already sorted!" << std::endl;
+	return 1;
+}
+
 void print(std::vector<int> &vec){
 
 	std::vector<int>::iterator itv = vec.begin();
@@ -191,8 +202,6 @@ void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> >
 	recursiveSort( dequesPair, 0 );
 
 	bigChain = mainChainDeque( dequesPair );
-	if (odd)
-		dequesPair.push_back(std::pair<int, int>(temp, temp));
 
 	std::deque<int>::iterator b_it;
 	std::deque<int> sequence = insertionDequesSort( dequesPair );
@@ -204,7 +213,11 @@ void	pushDequeNumbers( std::deque<int> &deques, std::deque<std::pair<int, int> >
 			b_it++;
 		}
 		bigChain.insert(b_it, dequesPair[*s_it - 1].second);
-		
+	}
+	if (odd) {
+		for (b_it = bigChain.begin(); b_it != bigChain.end() && *b_it < temp; b_it++)
+			;
+		bigChain.insert(b_it, temp);
 	}
 	return ;
 }

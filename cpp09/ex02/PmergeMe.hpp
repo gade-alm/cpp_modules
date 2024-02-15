@@ -15,6 +15,7 @@ void				checkValues( char** string );
 void				checkDuplicates( char** string );
 void				print(std::vector<int> &vec);
 void				printPair( std::vector<std::pair<int, int> > &vec );
+int					isSorted( char **av );
 
 void				pushVectorsNumbers( std::vector<int> &vectors, std::vector<std::pair<int, int> > &vectorsPair, char** av );
 void				recursiveSort( std::vector<std::pair<int, int> > &vectorPairs, size_t size );
