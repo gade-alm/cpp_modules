@@ -48,7 +48,7 @@ void	makeConversion ( std::ifstream & input, std::ifstream & database ) {
 			continue ;
 		}
 		if (checker[11] != '|') {
-			std::cout << "Missing or wrongly put | -> " << checker << std::endl;
+			std::cout << "Wrong input, please check the line -> " << checker << std::endl;
 			continue ;
 		}
 		if (checkValue(checker)) {
